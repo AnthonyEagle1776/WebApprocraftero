@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+polytoria.com	TRUE	/	FALSE	1999999999	PHPSESSID	p9o2k8q2ktk9pl4q3lna50gb5q
+polytoria.com	TRUE	/	FALSE	1999999999	gtrack	c432ecbeb19fbf24420c3ef4ade556839a90458404aa653fd48d177ada36d235
+.polytoria.com	TRUE	/	FALSE	1999999999	__cfduid	d0f02fc8c1eb34ceffd65604f3b8726421615320882
+polytoria.com	TRUE	/	FALSE	1999999999	SameSite	Lax
+

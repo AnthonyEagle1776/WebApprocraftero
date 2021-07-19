@@ -1,0 +1,846 @@
+
+<!doctype html>
+<html lang="en">
+  
+<!-- Mirrored from polytoria.com/forum/post/48972 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Mar 2021 20:14:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WH2SEP7C8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WH2SEP7C8');
+    </script>
+    <link rel="preload" href="https://polytoria.com/assets/css/superium-theme-light.css" as="style">
+    <link rel="preload" href="https://polytoria.com/assets/js/theme.min.js" as="script">
+        <script data-ad-client="ca-pub-1944231940353964" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&amp;features=fetch"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://polytoria.com/assets/js/prebid-ads.js"></script>
+
+    <style>
+      .addreaction {
+        transition: transform .2s !important;
+      }
+      .addreaction:hover {
+        transform: scale(2) !important;
+        cursor: hand !important;
+        z-index: 100 !important;
+      }
+
+      .zoom_sp {
+          transition: transform .2s;
+      }
+
+      .zoom_sp:hover {
+        transform: scale(1.2);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      .zoom_upload {
+        transition: transform .2s;
+      }
+
+      .zoom_upload:hover {
+        transform: scale(1.1);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      body.modal-open .main-content{
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+
+      body.modal-open .navbar {
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A free-to-play online brick building game for all ages. Customize your character on the site, buy and sell clothes, trade with other users and much more. Use the constructor to create beautiful scenes and play other people's games.">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="https://polytoria.com/assets/fonts/feather/feather.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="https://polytoria.com/assets/css/superium-theme-light.css" id="stylesheetLight">
+    <link rel="stylesheet" href="https://polytoria.com/assets/css/superium-theme-light.css" id="stylesheetDark">
+    <link rel="stylesheet" href="https://polytoria.com/assets/css/Polytoria.css">
+    <script type="text/javascript">
+      function VerifyEmail() {
+        $.post("/api/auth/verify-email", {csrf: "07d1a595138b56e9b8e8eb667f9497bc98c2b4858713c631cddd6d127803605d"} , function(data){
+          if (data != "OK") {
+            $.showAlert({title: "Error", body: data})
+          } else {
+            $.showAlert({title: "Verify Email", body: "A verification email has been sent to the specified email address."})
+          }
+        });
+      }
+    </script>
+    <title>Polytoria</title>
+    <style>
+    body {display: none}
+    </style>
+    <script>
+    localStorage.setItem("btColorScheme", "light")
+    localStorage.setItem("btNavColor", "default")
+    localStorage.setItem("btNavPosition", "combo")
+    localStorage.setItem("btSidebarSize", "base")
+    </script>
+
+    <script>
+      function OnSearchBarChange(id) {
+        var searchQuery = document.getElementById("headerSearchDesktop").value;
+
+        $.get( "/api/fetch/search?q=" + searchQuery, function( data ) {
+          $( "#searchbar_content" ).html( data );
+        });
+      }
+    </script>
+  </head>
+  <body>
+        <div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px; top: 16px; right: 16px;z-index: 5000" id="poly-notif">
+
+    </div>
+    <div class="modal fade" id="downloadClientModal" tabindex="-1" role="dialog" aria-labelledby="downloadClientModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button><br>
+            <center>
+              <img src="https://polytoria.com/assets/img/polytoria.png" width="64"><br><br>
+              <h1>Almost there!</h1>
+              <p>Download the Polytoria Client and start having fun!</p>
+              <button class="btn btn-primary" onclick="document.location = 'https://setup.polytoria.com/polytoria_setup.exe?v=2'">Download Polytoria</button>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-card card" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-header-title" id="avatarColorModalTitle">
+                    Upload
+                  </h4>
+
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="overflow: hidden;">
+              <ul class="list-group list-group-flush list my-n3">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'https://polytoria.com/shop/upload/shirt'">
+                      <div class="card-body">
+                        <img src="https://polytoria.com/assets/img/uploadshirt.png" class="card-img"><br>
+                        Shirt
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'https://polytoria.com/shop/upload/pants'">
+                      <div class="card-body">
+                        <img src="https://polytoria.com/assets/img/uploadpants.png" class="card-img"><br>
+                        Pants
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'https://polytoria.com/shop/upload/tshirt'">
+                      <div class="card-body">
+                        <img src="https://polytoria.com/assets/img/upload_tee.png" class="card-img"><br>
+                        T-Shirt
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="avatarColorModal" tabindex="-1" role="dialog" aria-labelledby="avatarColorModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="width: 390px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="avatarColorModalTitle">Choose Part Color</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="zoom_sp" id="clr_1027" onclick="SetColor('1027', '#9ff3e9')" style="background-color: #9ff3e9"></div><div class="zoom_sp" id="clr_38" onclick="SetColor('38', '#a05f35')" style="background-color: #a05f35"></div><div class="zoom_sp" id="clr_29" onclick="SetColor('29', '#a1c48c')" style="background-color: #a1c48c"></div><div class="zoom_sp" id="clr_1007" onclick="SetColor('1007', '#a34b4b')" style="background-color: #a34b4b"></div><div class="zoom_sp" id="clr_194" onclick="SetColor('194', '#a3a2a5')" style="background-color: #a3a2a5"></div><div class="zoom_sp" id="clr_119" onclick="SetColor('119', '#a4bd47')" style="background-color: #a4bd47"></div><div class="zoom_sp" id="clr_1015" onclick="SetColor('1015', '#aa00aa')" style="background-color: #aa00aa"></div><div class="zoom_sp" id="clr_1014" onclick="SetColor('1014', '#aa5500')" style="background-color: #aa5500"></div><div class="zoom_sp" id="clr_1003" onclick="SetColor('1003', '#111111')" style="background-color: #111111"></div><div class="zoom_sp" id="clr_1024" onclick="SetColor('1024', '#afddff')" style="background-color: #afddff"></div><div class="zoom_sp" id="clr_1026" onclick="SetColor('1026', '#b1a7ff')" style="background-color: #b1a7ff"></div><div class="zoom_sp" id="clr_1006" onclick="SetColor('1006', '#b480ff')" style="background-color: #b480ff"></div><div class="zoom_sp" id="clr_45" onclick="SetColor('45', '#b4d2e4')" style="background-color: #b4d2e4"></div><div class="zoom_sp" id="clr_1018" onclick="SetColor('1018', '#12eed4')" style="background-color: #12eed4"></div><div class="zoom_sp" id="clr_1008" onclick="SetColor('1008', '#c1be42')" style="background-color: #c1be42"></div><div class="zoom_sp" id="clr_21" onclick="SetColor('21', '#c4281c')" style="background-color: #c4281c"></div><div class="zoom_sp" id="clr_18" onclick="SetColor('18', '#cc8e69')" style="background-color: #cc8e69"></div><div class="zoom_sp" id="clr_1028" onclick="SetColor('1028', '#ccffcc')" style="background-color: #ccffcc"></div><div class="zoom_sp" id="clr_1002" onclick="SetColor('1002', '#cdcdcd')" style="background-color: #cdcdcd"></div><div class="zoom_sp" id="clr_5" onclick="SetColor('5', '#d7c59a')" style="background-color: #d7c59a"></div><div class="zoom_sp" id="clr_106" onclick="SetColor('106', '#da8541')" style="background-color: #da8541"></div><div class="zoom_sp" id="clr_101" onclick="SetColor('101', '#da867a')" style="background-color: #da867a"></div><div class="zoom_sp" id="clr_105" onclick="SetColor('105', '#e29b40')" style="background-color: #e29b40"></div><div class="zoom_sp" id="clr_208" onclick="SetColor('208', '#e5e4df')" style="background-color: #e5e4df"></div><div class="zoom_sp" id="clr_9" onclick="SetColor('9', '#e8bac8')" style="background-color: #e8bac8"></div><div class="zoom_sp" id="clr_125" onclick="SetColor('125', '#eab892')" style="background-color: #eab892"></div><div class="zoom_sp" id="clr_1" onclick="SetColor('1', '#f2f3f3')" style="background-color: #f2f3f3"></div><div class="zoom_sp" id="clr_24" onclick="SetColor('24', '#f5cd30')" style="background-color: #f5cd30"></div><div class="zoom_sp" id="clr_1001" onclick="SetColor('1001', '#f8f8f8')" style="background-color: #f8f8f8"></div><div class="zoom_sp" id="clr_226" onclick="SetColor('226', '#fdea8d')" style="background-color: #fdea8d"></div><div class="zoom_sp" id="clr_1004" onclick="SetColor('1004', '#ff0000')" style="background-color: #ff0000"></div><div class="zoom_sp" id="clr_1032" onclick="SetColor('1032', '#ff00bf')" style="background-color: #ff00bf"></div><div class="zoom_sp" id="clr_1016" onclick="SetColor('1016', '#ff66cc')" style="background-color: #ff66cc"></div><div class="zoom_sp" id="clr_1017" onclick="SetColor('1017', '#ffaf00')" style="background-color: #ffaf00"></div><div class="zoom_sp" id="clr_1005" onclick="SetColor('1005', '#ffb000')" style="background-color: #ffb000"></div><div class="zoom_sp" id="clr_1025" onclick="SetColor('1025', '#ffc9c9')" style="background-color: #ffc9c9"></div><div class="zoom_sp" id="clr_1030" onclick="SetColor('1030', '#ffcc99')" style="background-color: #ffcc99"></div><div class="zoom_sp" id="clr_1009" onclick="SetColor('1009', '#ffff00')" style="background-color: #ffff00"></div><div class="zoom_sp" id="clr_1029" onclick="SetColor('1029', '#ffffcc')" style="background-color: #ffffcc"></div><div class="zoom_sp" id="clr_26" onclick="SetColor('26', '#1b2a35')" style="background-color: #1b2a35"></div><div class="zoom_sp" id="clr_1012" onclick="SetColor('1012', '#2154b9')" style="background-color: #2154b9"></div><div class="zoom_sp" id="clr_1010" onclick="SetColor('1010', '#0000ff')" style="background-color: #0000ff"></div><div class="zoom_sp" id="clr_141" onclick="SetColor('141', '#27462d')" style="background-color: #27462d"></div><div class="zoom_sp" id="clr_28" onclick="SetColor('28', '#287f47')" style="background-color: #287f47"></div><div class="zoom_sp" id="clr_1013" onclick="SetColor('1013', '#04afec')" style="background-color: #04afec"></div><div class="zoom_sp" id="clr_107" onclick="SetColor('107', '#008f9c')" style="background-color: #008f9c"></div><div class="zoom_sp" id="clr_1021" onclick="SetColor('1021', '#3a7d15')" style="background-color: #3a7d15"></div><div class="zoom_sp" id="clr_37" onclick="SetColor('37', '#4b974b')" style="background-color: #4b974b"></div><div class="zoom_sp" id="clr_1031" onclick="SetColor('1031', '#6225d1')" style="background-color: #6225d1"></div><div class="zoom_sp" id="clr_199" onclick="SetColor('199', '#635f62')" style="background-color: #635f62"></div><div class="zoom_sp" id="clr_1020" onclick="SetColor('1020', '#00ff00')" style="background-color: #00ff00"></div><div class="zoom_sp" id="clr_1019" onclick="SetColor('1019', '#00ffff')" style="background-color: #00ffff"></div><div class="zoom_sp" id="clr_192" onclick="SetColor('192', '#694028')" style="background-color: #694028"></div><div class="zoom_sp" id="clr_104" onclick="SetColor('104', '#6b327c')" style="background-color: #6b327c"></div><div class="zoom_sp" id="clr_102" onclick="SetColor('102', '#6e99ca')" style="background-color: #6e99ca"></div><div class="zoom_sp" id="clr_135" onclick="SetColor('135', '#74869d')" style="background-color: #74869d"></div><div class="zoom_sp" id="clr_151" onclick="SetColor('151', '#789082')" style="background-color: #789082"></div><div class="zoom_sp" id="clr_217" onclick="SetColor('217', '#7c5c46')" style="background-color: #7c5c46"></div><div class="zoom_sp" id="clr_1011" onclick="SetColor('1011', '#002060')" style="background-color: #002060"></div><div class="zoom_sp" id="clr_1022" onclick="SetColor('1022', '#7f8e64')" style="background-color: #7f8e64"></div><div class="zoom_sp" id="clr_11" onclick="SetColor('11', '#80bbdb')" style="background-color: #80bbdb"></div><div class="zoom_sp" id="clr_23" onclick="SetColor('23', '#0d69ac')" style="background-color: #0d69ac"></div><div class="zoom_sp" id="clr_1023" onclick="SetColor('1023', '#8c5b9f')" style="background-color: #8c5b9f"></div><div class="zoom_sp" id="clr_153" onclick="SetColor('153', '#957977')" style="background-color: #957977"></div>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="purchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="https://polytoria.com/assets/img/icons/brick.png" id='purchaseDialogCurrencyIcon'> <span id='purchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='purchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="altPurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="altPurchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='altPurchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="https://polytoria.com/assets/img/icons/stud.png" id='altPurchaseDialogCurrencyIcon'> <span id='altPurchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='altPurchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+<div class="modal fade" id="collectiblePurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="collectiblePurchaseConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to purchase <b><span id='c_purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="https://polytoria.com/assets/img/icons/brick.png"> <span id='c_purchaseDialogPrice'>15</span>?
+  </div>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='c_purchaseDialogConfirmButton'>Yes</button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="detailConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="detailConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Update Item Details</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form method="post">
+      <div class="form-group">
+          <div class="modal-body">
+            <input class="form-control" type="text" name="itemname" placeholder="Item Name">
+            <br>
+            <textarea class="form-control" name="itemdescription" rows="6" cols="50" placeholder="Item Description"></textarea>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='detailDialogConfirmButton' onclick="UpdateDetails()">Update</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+          </div>
+      </div>
+  </form>
+</div>
+</div>
+</div>
+
+    <div class="modal fade" id="sidebarModalActivity" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">
+              Notifications
+            </h4>
+
+          </div>
+          <div class="modal-body">
+
+
+            <div class="list-group list-group-flush my-n3">            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#" style="padding-top:0.75rem;padding-bottom:0.75rem">
+              <img src="https://polytoria.com/assets/img/navbar-logo-light.png" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                  <a href="https://polytoria.com/user" class="dropdown-item">Profile</a>
+                  <a href="https://polytoria.com/my/settings" class="dropdown-item">Settings</a>
+                  <a href="https://polytoria.com/my/transactions" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="https://polytoria.com/login/expire" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item d-md-none">
+                  <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
+                   <span class="fe fe-bell"></span> Notifications
+                  </a>
+                </li>
+              </ul>
+              <ul class="navbar-nav mb-md-4">
+                                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/games">
+                    <i class="fe fe-play"></i> Games
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/shop">
+                    <i class="fe fe-shopping-bag"></i> Shop
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/forum">
+                    <i class="fe fe-message-square"></i> Forum
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/users">
+                    <i class="fe fe-users"></i> People
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/guilds">
+                    <i class="fe fe-shield"></i> Guilds
+                  </a>
+                </li>
+                                <li class="nav-item">
+                  <a class="nav-link " href="https://polytoria.com/develop">
+                    <i class="fe fe-code"></i> Develop
+                  </a>
+                </li>
+                              </ul>
+              <div class="mt-auto"></div>
+                            <div class="navbar-user d-none d-md-flex" id="sidebarUser">
+                <a href="#sidebarModalActivity" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropup">
+                  <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
+                    <a href="https://polytoria.com/user" class="dropdown-item">Profile</a>
+                    <a href="https://polytoria.com/my/settings" class="dropdown-item">Settings</a>
+                    <a href="https://polytoria.com/my/transactions" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="https://polytoria.com/login/expire" class="dropdown-item">Logout</a>
+                  </div>
+
+                </div>
+                <a href="#sidebarModalSearch" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+        <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarSmallCollapse" aria-controls="sidebarSmallCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="https://polytoria.com/">
+              <img src="#" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarSmallIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarSmallIcon">
+                  <a href="https://polytoria.com/user" class="dropdown-item">Profile</a>
+                  <a href="https://polytoria.com/my/settings" class="dropdown-item">Settings</a>
+                  <a href="https://polytoria.com/my/transactions" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="https://polytoria.com/login/expire" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarSmallCollapse">
+
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr class="navbar-divider d-none d-md-block mt-0 mb-3">
+              <hr class="navbar-divider my-3">
+              <div class="mt-auto"></div>
+              <div class="mb-4" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Customize">
+                <a href="#modalDemo" class="btn btn-block btn-primary" data-toggle="modal">
+                  <i class="fe fe-sliders"></i> <span class="d-md-none ml-2">Customize</span>
+                </a>
+              </div>
+              <div class="navbar-user d-none d-md-flex flex-column" id="sidebarSmallUser">
+                <a href="#sidebarModalSearch" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+                <a href="#sidebarModalActivity" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropright">
+                  <a href="#" id="sidebarSmallIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarSmallIconCopy">
+                    <a href="https://polytoria.com/user" class="dropdown-item">Profile</a>
+                    <a href="https://polytoria.com/my/settings" class="dropdown-item">Settings</a>
+                    <a href="https://polytoria.com/my/transactions" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="https://polytoria.com/login/expire" class="dropdown-item">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+
+      <nav class="navbar navbar-expand-lg " id="topnav">
+        <div class="container">
+          <div class="navbar-user">
+            <div class="dropdown mr-4 d-none d-lg-flex">
+
+              <a href="#" class="navbar-user-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon active">
+                  <i class="fe fe-bell"></i>
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-card">
+                <div class="card-header">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h5 class="card-header-title">
+                        Notifications
+                      </h5>
+
+                    </div>
+                    <div class="col-auto">
+                      <a href="#!" class="small">
+                        View all
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="list-group list-group-flush my-n3">
+                                      </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a href="#" class="avatar avatar-sm dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href="https://polytoria.com/user" class="dropdown-item">Profile</a>
+                <a href="https://polytoria.com/my/settings" class="dropdown-item">Settings</a>
+                <a href="https://polytoria.com/my/transactions" class="dropdown-item">Transactions</a>
+                <hr class="dropdown-divider">
+                <a href="https://polytoria.com/login/expire" class="dropdown-item">Logout</a>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
+
+            <form class="mt-4 mb-3 d-md-none">
+              <input type="search" class="form-control form-control-rounded" placeholder="Search" aria-label="Search">
+            </form>
+
+          </div>
+
+        </div>
+      </nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+          <div class="container-fluid">
+            <form class="form-inline mr-4 d-none d-md-flex">
+              <div class="input-group input-group-flush input-group-merge" data-toggle="" data-options='{"valueNames": ["name"]}'>
+                <input type="search" autocomplete="off" class="form-control form-control-prepended dropdown-toggle search" id='headerSearchDesktop' data-toggle="dropdown" placeholder="Search" onchange="OnSearchBarChange(headerSearchDesktop)">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </div>
+
+                <script>
+                  $("#headerSearchDesktop").on("input", OnSearchBarChange)
+                </script>
+
+                <div class="dropdown-menu dropdown-menu-card">
+                  <div class="card-body">
+                    <div class="list-group list-group-flush list my-n3" id='searchbar_content'>
+                      <center class="mt-5 mb-5"><h1 class="display-3"><i class="fe fe-search text-secondary"></i></h1><h5 class="header-pretitle">Start typing to search Polytoria</h5></center>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="navbar-user">
+                              <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-primary" onclick="document.location = 'https://polytoria.com/login'">Log in</button>
+                </div>
+                <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-success" onclick="document.location = 'https://polytoria.com/login/new'">Sign up</button>
+                </div>
+                          </div>
+
+          </div>
+        </nav>
+        
+        <div class="container" style="max-width: 1300px;">
+  <div class="alert alert-primary poly-alert" role="alert">
+    <i class='fe fe-alert-circle' style='float: left;'></i>Join our Discord: https://discord.gg/gK4r3D7rWa<i class='fe fe-alert-circle' style='float: right;'></i>
+  </div>
+</div>
+      <div class="container" style="max-width: 1300px; display: none" id="a9b5bd773de075add20943bed7e3495da955f02467b3071029e75150da0ae29b">
+        <div class="alert alert-danger" style="text-align: center; margin: 5px auto -10px auto; max-width: 1200px;" role="alert">
+          <b>L<span style="font-size: 0px;">lwFSqegyBerrB4p8S2agQbZjM5ql5b7WobV8FpSN8djNi5rjZpfBK4wqKnkxlRpj</span>ooks l<span style="font-size: 0px;">RIWuvRCKBFQ13JLJr4z08a8e0ZvShYV0qOgU0aLF0KOISBqZJwCWZXYHkMWdiaUE</span>ike y<span style="font-size: 0px;">xFaks6FqyTf8CY21iswcwXwUrSos9WqkjyjnRRghUcLAEEGayUIQ9IBUdJDs2gJu</span>ou're u<span style="font-size: 0px;">IAYCjb3dnNf6U0RDd9sCzBPxd90ZVVI6XXnfG6xlGRCnjO3jV0nBUxzYRJvVmtwh</span>si<span style="font-size: 0px;">oNBxptOjIZYezviAge16onqLtdP8ZzxW1kRAJ15yvPRkWvt6Onc6KimzS11llPYT</span>ng a<span style="font-size: 0px;">bayDK0dF3r79ymBjvdFscR8ivpVZ8yFHl0C6UN31KwR1eoDujMTYLR0ghN6mZB44</span>n a<span style="font-size: 0px;">IDCZNyD6wu24rc8EBrr4ZMzlESOyGXX9Su8NfXL4DLqhg8vAwN0fFU1YauNoXxE2</span>d<span style="font-size: 0px;">UTpx947CGnmSuqccDm3LfYbEd7jJBUcxdcLhv6xW0BrLI9CCALS6jvBH45ftbuj0</span>bl<span style="font-size: 0px;">EUmQ0zgch3HVsmY6xZdTwekAoSb7vaGrJQmHqtRcFD8vW1CAsD1al94y6zuONdMg</span>ock<span style="font-size: 0px;">Xt7sXkb2hKdgmZiIbixKVszkSGba95E8MbEzjllPITW2MRYFhKKeheJSUzEiK25M</span>er!</b> P<span style="font-size: 0px;">JXusuzt7SKvrx0ycOvSyTasZVRZTstMYwIQfOa6erZC1kRFRHf8afVD3tXHKnCG4</span>lea<span style="font-size: 0px;">ve8GdAR1GZm6lczwBMsNwFKdcQidbuxSbRhj9A7skK1zYrSC2ox5tkwMU3biY2o5</span>se consider di<span style="font-size: 0px;">ruZzA0rmqJALBoNxPCN7J6yXq4gLZJvgAAB5UPsPehP59Bb4KFp6XyOUYY5qf45W</span>sab<span style="font-size: 0px;">usW6Qsd9BE53XI7kkzXGs7SxYND5Rs6E4J3AzTURSfEhtvgTWmNDuQNl7hMHisVD</span>ling yo<span style="font-size: 0px;">atGwc7hndD2yPOWrJQfIgL7lLFPmGrWBP3lSS5RraFI7uaE6FiC4VdyCFY6o0mCH</span>ur ad<span style="font-size: 0px;">7TLWdOciz12squpYKqny7LECqwYIjqANL31JcJqTPloL8Cfr3XHEiFVqN9zuXUtS</span>blo<span style="font-size: 0px;">HlW5MNLOs8c5YdzmRQCiRtRsDdveIioyFEkdPuqnMuXUvMiwF89A8ghG2GUODy0m</span>cker to he<span style="font-size: 0px;">M8R5KHB1ia7o39M8dLd1Zlkhbp2hRKBhNox2HzniZXecy66MOoMh2EhG6hXAp1eN</span>lp u<span style="font-size: 0px;">zBQVkTYDYL7cs53W8azzyYCqP1ku2bpEDg9GnKgOc47YHLmtNNbntXw1YBIXipKF</span>s p<span style="font-size: 0px;">Be088FSJHV7vb3EZbgIHJhIcaXrZJAehKG5VLu27j55wewAfsuLwnpMU9YKNKFyM</span>ay o<span style="font-size: 0px;">ZbK6JHeI2curZdO4LCqFqdiAtAd4v7vri73NaKtOY3LREfTRnSsVS9zs7Ms4ZqWW</span>ur se<span style="font-size: 0px;">1uQP3xsf61baxe4iima4cRwMRGxbsy8NtzEOrDqdc6l32t5dKS0NhCsNQqU3c20S</span>rver<span style="font-size: 0px;">91JtZ5wZ7yzvR9hBaHRm4N9MF9Pz0y5PnjI5VZt2jWIyxGnEobW18W90VYJItbHW</span>s.
+        </div>
+      </div>
+
+        <script>
+          var currentPostId = 0;
+
+          function SelectPost(id) {
+            currentPostId = id;
+          }
+
+          function AddReaction(eid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + currentPostId, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+
+          function AddReactionWithId(eid, pid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + pid, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+        </script>
+                <!-- End of header -->
+
+        
+            <center class="mt-3">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- bloxtopia_top -->
+              <ins class="adsbygoogle"
+                   style="display:inline-block;width:728px;height:90px"
+                   data-ad-client="ca-pub-1944231940353964"
+                   data-ad-slot="2177056373"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </center>
+            
+      <meta property="og:title" content="how do i reinstall the client" />
+<meta property="og:image" content="https://polytoria.com/assets/thumbnails/avatars/headshots/cd78a8c3d16a7fbd8f0ebcb4a9a75cf1.png" />
+<meta property="og:description" content="everything works except the client" />
+<meta property="og:site_name" content="Polytoria" />
+<meta property="og:url" content="https://polytoria.com/forum/post/48972" />
+<script>
+$(function() {
+    document.title = "how do i reinstall the client - Polytoria";
+});
+</script>
+<br><br>
+<div class="main-content">
+  <div class="container" style="max-width: 1200px;">
+		<div class="table mb-0">
+			<div class="card">
+	      <div class="card-header">
+					<nav aria-label="breadcrumb">
+			      <ol class="breadcrumb">
+			        <li class="breadcrumb-item"><a href="https://polytoria.com/forum">Forum</a></li>
+			        <li class="breadcrumb-item"><a href="https://polytoria.com/forum">Polytoria</a></li>
+			        <li class="breadcrumb-item"><a href="https://polytoria.com/forum/sub/2">Help</a></li>
+			        <li class="breadcrumb-item active" aria-current="page">how do i reinstall the client</li>
+			      </ol>
+			    </nav>
+	      </div>
+				<table class="table table-sm table-nowrap card-table">
+					<tbody class="list">
+            <tr>
+                <td style="width: 20%" class="text-center">
+                  <p><a href="https://polytoria.com/user/8916">
+                    <img src="https://polytoria.com/assets/img/offline.png"> &nbsp;Quejozuero11
+                  </p>
+                  <img src="https://polytoria.com/assets/thumbnails/avatars/cd78a8c3d16a7fbd8f0ebcb4a9a75cf1.png" width="100%"><br><br></a>
+                  <b>Posts: </b> 2<br>
+                  <b>Joined: </b> 11/23/2020
+									
+									
+                </td>
+                <td style="max-width: 80%; white-space: normal; word-break: break-all">
+									<div class='row'>
+									<div class='col m1-n2'>
+                  	<p class="text-secondary"><i class="fe fe-clock"></i> Posted 16 hours ago</p>
+                  	<p>everything works except the client</p>
+										
+									</div>
+									<div class="col-auto">
+										<div class="dropdown">
+											<a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" data-expanded="false">
+												<i class="fe fe-more-vertical"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a href="https://polytoria.com/report/forum/48972" class="dropdown-item text-danger">
+													Report
+												</a>
+												
+											</div>
+										</div>
+									</div>
+									</div>
+                </td>
+              </tr>
+					</tbody>
+				</table>
+								<table>
+											</table>
+			</div>
+		</div>
+  </div>
+</div>
+
+<script>
+var pressed = false;
+  function PostForum(token) {
+		if (pressed === true) return;
+		pressed = true;
+    var content = $("#postContentInput").val().trim();
+
+    var status = Validate(content);
+
+    if (status != "OK") {
+      $("#postError").html(status);
+      $('#postError').fadeIn();
+			grecaptcha.reset();
+    } else {
+      $('#postError').fadeOut();
+
+      $.post("/api/forum/reply", { "csrf" : "07d1a595138b56e9b8e8eb667f9497bc98c2b4858713c631cddd6d127803605d","content": content, "reply_to": 48972, "captcha": token}, function(data) {
+        console.log(data);
+				data = data.trim();
+        if (data.startsWith("success:")) {
+          var d = data.split(":");
+          document.location = document.location
+        } else {
+          $("#postError").html(data);
+          $('#postError').fadeIn();
+        }
+      });
+    }
+  }
+
+  function Validate(content) {
+		if (content.length < 10) {
+      return "Content should be at least 10	 characters long";
+    } else if (content.length > 8000) {
+      return "Content size is too large.";
+    }
+    return "OK";
+  }
+</script>
+
+<div class="chat">
+
+</div>
+
+    <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img src="https://polytoria.com/assets/img/navbar-logo-light.png" width="150">
+            <small style="margin-top: 15px;"class="d-block mb-3 text-muted">© 2017-2021</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Site</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://polytoria.com/">Home</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/games">Games</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/shop">Shop</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/forum">Forum</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/users">People</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://blog.polytoria.com/">Blog</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/privacy">Privacy Policy</a></li>
+              <li><a class="text-muted" href="https://polytoria.com/terms">Terms of Service</a></li>
+              <li><a class="text-muted" href="https://corp.polytoria.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Social</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://discord.gg/aQ9577sSAs">Discord</a></li>
+              <li><a class="text-muted" href="https://twitter.com/PlaySuperium">Twitter</a></li>
+              <li><a class="text-muted" href="https://www.youtube.com/channel/UCuHHIDVEYqOAp6SQwOp67zw">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+</div>
+<!-- JAVASCRIPT
+================================================== -->
+  <script>
+    if( window.canRunAds === undefined ){
+      $("#a9b5bd773de075add20943bed7e3495da955f02467b3071029e75150da0ae29b").css("display", "block");
+    }
+  </script>
+  
+<script src="https://polytoria.com/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="https://polytoria.com/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://polytoria.com/assets/libs/@shopify/draggable/lib/es5/draggable.bundle.legacy.js"></script>
+<script src="https://polytoria.com/assets/libs/autosize/dist/autosize.min.js"></script>
+<script src="https://polytoria.com/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+<script src="https://polytoria.com/assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://polytoria.com/assets/libs/highlightjs/highlight.pack.min.js"></script>
+<script src="https://polytoria.com/assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="https://polytoria.com/assets/libs/chart.js/Chart.extension.min.js"></script>
+<!--<script src='/assets/js/notifications.js?v=1615320870'></script>-->
+<script src="https://polytoria.com/assets/js/Superium.js?ver=1"></script>
+<script src="https://polytoria.com/assets/js/theme.min.js"></script>
+<script src="https://polytoria.com/assets/js/modal.js"></script>
+<script type="text/javascript">
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+  console.log("%cSTOP!", "background-color: red; color: white; font-size: 96px;");
+  console.log("If anybody asks you to paste anything here: DON'T DO IT!\nThey are trying to steal your account and you will lose all your items and currency!")
+})
+
+</script>
+</body>
+
+<!-- Mirrored from polytoria.com/forum/post/48972 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Mar 2021 20:14:43 GMT -->
+</html>
