@@ -949,7 +949,7 @@ function LoadData(clear = false) {
   isPreviousEventComplete = false;
   $.ajax({
     type: "GET",
-    url: 'games%3fpage=0&sorttype=popular&q=' + page + "&sorttype="+ encodeURIComponent($("#sortType").val()) + "&q=" + encodeURIComponent($("#catalogSearchBar").val()),
+    url: 'https://rocrafterowebapp.vercel.app/api/fetch/games%3fpage=0&sorttype=popular&q=' + page + "&sorttype="+ encodeURIComponent($("#sortType").val()) + "&q=" + encodeURIComponent($("#catalogSearchBar").val()),
     success: function (result) {
 
       $("#catalog_container").append(result);
@@ -1079,7 +1079,7 @@ Time Taken To Build: 3 or 4 days </p>
             <div class="row align-items-center mb-4">
               <div class="col-sm-2">
                 <h6 class="header-pretitle">
-                  Polytoria
+                  RoCRAFTEROLEGACY
                 </h6>
                 <h1 class="header-title">
                   Games
