@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="en">
+  
+<!-- Mirrored from polytoria.com/login/forgot by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:15:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A free-to-play online brick building game for all ages. Customize your character on the site, buy and sell clothes, trade with other users and much more. Use the constructor to create beautiful scenes and play other people's games.">
+    <script src="../cdn-cgi/apps/head/d2xo1he7Kns6Z1vqZzVy46dfEyI.js"></script><link rel="stylesheet" href="../assets/fonts/feather/feather.min.css">
+    <script src="../../www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="../assets/css/superium-theme-light.css" id="stylesheetLight">
+    <title>Forgot Password - Polytoria</title>
+  </head>
+  <body class="d-flex align-items-center bg-auth border-top border-top-2 border-primary">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-5 col-xl-4 my-5">
+          <h1 class="display-4 text-center mb-3">
+            Password reset
+          </h1>
+          <p class="text-muted text-center mb-5">
+            Enter your username to get a password reset link.
+          </p>
+          <div class="alert alert-danger alert-dismissible" id='alert' role="alert" style="display:none">
+            <span id='message'>MESSAGE</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form>
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Enter your username" id='username-input'>
+            </div>
+            <button class="btn btn-lg btn-block btn-primary mb-3 g-recaptcha" data-sitekey="6Lc92Z0UAAAAALVq05HduzsySLoRHe9UyYS1eTwl" data-callback='Submit'>
+              Reset Password
+            </button>
+            <div class="text-center">
+              <small class="text-muted text-center">
+                Remember your password? <a href=".html">Log in</a>.
+              </small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function Submit(token) {
+        $.post("/api/auth/recover-password", { csrf: '7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454', username: $("#username-input").val() }, function (data) {
+          grecaptcha.reset();
+          if (data.trim() == "OK") {
+            $("#message").html("A recovery link has been sent to the email address linked to this account.");
+            $("#alert").css("display", "block");
+            $("#alert").removeClass("alert-danger");
+            $("#alert").addClass("alert-success");
+          } else {
+            $("#message").html(data);
+            $("#alert").css("display", "block");
+            $("#alert").addClass("alert-danger");
+            $("#alert").removeClass("alert-success");
+          }
+        });
+      }
+    </script>
+  </body>
+
+<!-- Mirrored from polytoria.com/login/forgot by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:15:25 GMT -->
+</html>
