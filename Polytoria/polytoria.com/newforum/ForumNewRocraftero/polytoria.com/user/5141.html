@@ -1,0 +1,1533 @@
+
+<!doctype html>
+<html lang="en">
+  
+<!-- Mirrored from polytoria.com/user/5141 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:19:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <script src="../cdn-cgi/apps/head/d2xo1he7Kns6Z1vqZzVy46dfEyI.js"></script><link rel="preload" href="../assets/css/superium-theme-light.css" as="style">
+    <link rel="preload" href="../assets/js/theme.min.js" as="script">
+        <script data-ad-client="ca-pub-1944231940353964" async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="../../polyfill.io/v3/polyfill.min2d4a.js?version=3.52.1&amp;features=fetch"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+    <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/emoji-picker/fgEmojiPicker.js"></script>
+    <script
+  src="../../code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src="../assets/js/prebid-ads.js"></script>
+
+    <style>
+      .addreaction {
+        transition: transform .2s !important;
+      }
+      .addreaction:hover {
+        transform: scale(2) !important;
+        cursor: hand !important;
+        z-index: 100 !important;
+      }
+
+      .zoom_sp {
+          transition: transform .2s;
+      }
+
+      .zoom_sp:hover {
+        transform: scale(1.2);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      .zoom_upload {
+        transition: transform .2s;
+      }
+
+      .zoom_upload:hover {
+        transform: scale(1.1);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      body.modal-open .main-content{
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+
+      body.modal-open .navbar {
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A free-to-play online brick building game for all ages. Customize your character on the site, buy and sell clothes, trade with other users and much more. Use the constructor to create beautiful scenes and play other people's games.">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="../assets/fonts/feather/feather.min.css">
+    <script src="../../www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="../assets/css/superium-theme-light.css" id="stylesheetLight">
+    <link rel="stylesheet" href="../assets/css/superium-theme-light.css" id="stylesheetDark">
+    <link rel="stylesheet" href="../assets/css/Polytoria.css">
+    <title>Polytoria</title>
+    <style>
+    body {display: none}
+    </style>
+    <script>
+    localStorage.setItem("btColorScheme", "light")
+    localStorage.setItem("btNavColor", "default")
+    localStorage.setItem("btNavPosition", "combo")
+    localStorage.setItem("btSidebarSize", "base")
+    </script>
+
+    <script>
+      function OnSearchBarChange(id) {
+        var searchQuery = document.getElementById("headerSearchDesktop").value;
+
+        $.get( "/api/fetch/search?q=" + searchQuery, function( data ) {
+          $( "#searchbar_content" ).html( data );
+        });
+      }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WH2SEP7C8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WH2SEP7C8');
+      gtag('config', 'UA-184290222-1');
+    </script>
+  </head>
+  <body>
+        <div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px; top: 16px; right: 16px;z-index: 5000" id="poly-notif">
+
+    </div>
+    <div class="modal fade" id="downloadClientModal" tabindex="-1" role="dialog" aria-labelledby="downloadClientModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button><br>
+            <center>
+              <img src="../assets/img/polytoria.png" width="64"><br><br>
+              <h1>Almost there!</h1>
+              <p>Download the Polytoria Client and start having fun!</p>
+              <a href="#" id='launcherDownloadUrl' class="btn btn-primary">Download Polytoria</a>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-card card" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-header-title" id="avatarColorModalTitle">
+                    Upload
+                  </h4>
+
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="overflow: hidden;">
+              <ul class="list-group list-group-flush list my-n3">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = '../login/index.html'">
+                      <div class="card-body">
+                        <img src="../assets/img/uploadshirt.png" class="card-img"><br>
+                        Shirt
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = '../login/index.html'">
+                      <div class="card-body">
+                        <img src="../assets/img/uploadpants.png" class="card-img"><br>
+                        Pants
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = '../login/index.html'">
+                      <div class="card-body">
+                        <img src="../assets/img/upload_tee.png" class="card-img"><br>
+                        T-Shirt
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="avatarColorModal" tabindex="-1" role="dialog" aria-labelledby="avatarColorModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="width: 390px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="avatarColorModalTitle">Choose Part Color</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="zoom_sp" id="clr_1027" onclick="SetColor('1027', '#9ff3e9')" style="background-color: #9ff3e9"></div><div class="zoom_sp" id="clr_38" onclick="SetColor('38', '#a05f35')" style="background-color: #a05f35"></div><div class="zoom_sp" id="clr_29" onclick="SetColor('29', '#a1c48c')" style="background-color: #a1c48c"></div><div class="zoom_sp" id="clr_1007" onclick="SetColor('1007', '#a34b4b')" style="background-color: #a34b4b"></div><div class="zoom_sp" id="clr_194" onclick="SetColor('194', '#a3a2a5')" style="background-color: #a3a2a5"></div><div class="zoom_sp" id="clr_119" onclick="SetColor('119', '#a4bd47')" style="background-color: #a4bd47"></div><div class="zoom_sp" id="clr_1015" onclick="SetColor('1015', '#aa00aa')" style="background-color: #aa00aa"></div><div class="zoom_sp" id="clr_1014" onclick="SetColor('1014', '#aa5500')" style="background-color: #aa5500"></div><div class="zoom_sp" id="clr_1003" onclick="SetColor('1003', '#111111')" style="background-color: #111111"></div><div class="zoom_sp" id="clr_1024" onclick="SetColor('1024', '#afddff')" style="background-color: #afddff"></div><div class="zoom_sp" id="clr_1026" onclick="SetColor('1026', '#b1a7ff')" style="background-color: #b1a7ff"></div><div class="zoom_sp" id="clr_1006" onclick="SetColor('1006', '#b480ff')" style="background-color: #b480ff"></div><div class="zoom_sp" id="clr_45" onclick="SetColor('45', '#b4d2e4')" style="background-color: #b4d2e4"></div><div class="zoom_sp" id="clr_1018" onclick="SetColor('1018', '#12eed4')" style="background-color: #12eed4"></div><div class="zoom_sp" id="clr_1008" onclick="SetColor('1008', '#c1be42')" style="background-color: #c1be42"></div><div class="zoom_sp" id="clr_21" onclick="SetColor('21', '#c4281c')" style="background-color: #c4281c"></div><div class="zoom_sp" id="clr_18" onclick="SetColor('18', '#cc8e69')" style="background-color: #cc8e69"></div><div class="zoom_sp" id="clr_1028" onclick="SetColor('1028', '#ccffcc')" style="background-color: #ccffcc"></div><div class="zoom_sp" id="clr_1002" onclick="SetColor('1002', '#cdcdcd')" style="background-color: #cdcdcd"></div><div class="zoom_sp" id="clr_5" onclick="SetColor('5', '#d7c59a')" style="background-color: #d7c59a"></div><div class="zoom_sp" id="clr_106" onclick="SetColor('106', '#da8541')" style="background-color: #da8541"></div><div class="zoom_sp" id="clr_101" onclick="SetColor('101', '#da867a')" style="background-color: #da867a"></div><div class="zoom_sp" id="clr_105" onclick="SetColor('105', '#e29b40')" style="background-color: #e29b40"></div><div class="zoom_sp" id="clr_208" onclick="SetColor('208', '#e5e4df')" style="background-color: #e5e4df"></div><div class="zoom_sp" id="clr_9" onclick="SetColor('9', '#e8bac8')" style="background-color: #e8bac8"></div><div class="zoom_sp" id="clr_125" onclick="SetColor('125', '#eab892')" style="background-color: #eab892"></div><div class="zoom_sp" id="clr_1" onclick="SetColor('1', '#f2f3f3')" style="background-color: #f2f3f3"></div><div class="zoom_sp" id="clr_24" onclick="SetColor('24', '#f5cd30')" style="background-color: #f5cd30"></div><div class="zoom_sp" id="clr_1001" onclick="SetColor('1001', '#f8f8f8')" style="background-color: #f8f8f8"></div><div class="zoom_sp" id="clr_226" onclick="SetColor('226', '#fdea8d')" style="background-color: #fdea8d"></div><div class="zoom_sp" id="clr_1004" onclick="SetColor('1004', '#ff0000')" style="background-color: #ff0000"></div><div class="zoom_sp" id="clr_1032" onclick="SetColor('1032', '#ff00bf')" style="background-color: #ff00bf"></div><div class="zoom_sp" id="clr_1016" onclick="SetColor('1016', '#ff66cc')" style="background-color: #ff66cc"></div><div class="zoom_sp" id="clr_1017" onclick="SetColor('1017', '#ffaf00')" style="background-color: #ffaf00"></div><div class="zoom_sp" id="clr_1005" onclick="SetColor('1005', '#ffb000')" style="background-color: #ffb000"></div><div class="zoom_sp" id="clr_1025" onclick="SetColor('1025', '#ffc9c9')" style="background-color: #ffc9c9"></div><div class="zoom_sp" id="clr_1030" onclick="SetColor('1030', '#ffcc99')" style="background-color: #ffcc99"></div><div class="zoom_sp" id="clr_1009" onclick="SetColor('1009', '#ffff00')" style="background-color: #ffff00"></div><div class="zoom_sp" id="clr_1029" onclick="SetColor('1029', '#ffffcc')" style="background-color: #ffffcc"></div><div class="zoom_sp" id="clr_26" onclick="SetColor('26', '#1b2a35')" style="background-color: #1b2a35"></div><div class="zoom_sp" id="clr_1012" onclick="SetColor('1012', '#2154b9')" style="background-color: #2154b9"></div><div class="zoom_sp" id="clr_1010" onclick="SetColor('1010', '#0000ff')" style="background-color: #0000ff"></div><div class="zoom_sp" id="clr_141" onclick="SetColor('141', '#27462d')" style="background-color: #27462d"></div><div class="zoom_sp" id="clr_28" onclick="SetColor('28', '#287f47')" style="background-color: #287f47"></div><div class="zoom_sp" id="clr_1013" onclick="SetColor('1013', '#04afec')" style="background-color: #04afec"></div><div class="zoom_sp" id="clr_107" onclick="SetColor('107', '#008f9c')" style="background-color: #008f9c"></div><div class="zoom_sp" id="clr_1021" onclick="SetColor('1021', '#3a7d15')" style="background-color: #3a7d15"></div><div class="zoom_sp" id="clr_37" onclick="SetColor('37', '#4b974b')" style="background-color: #4b974b"></div><div class="zoom_sp" id="clr_1031" onclick="SetColor('1031', '#6225d1')" style="background-color: #6225d1"></div><div class="zoom_sp" id="clr_199" onclick="SetColor('199', '#635f62')" style="background-color: #635f62"></div><div class="zoom_sp" id="clr_1020" onclick="SetColor('1020', '#00ff00')" style="background-color: #00ff00"></div><div class="zoom_sp" id="clr_1019" onclick="SetColor('1019', '#00ffff')" style="background-color: #00ffff"></div><div class="zoom_sp" id="clr_192" onclick="SetColor('192', '#694028')" style="background-color: #694028"></div><div class="zoom_sp" id="clr_104" onclick="SetColor('104', '#6b327c')" style="background-color: #6b327c"></div><div class="zoom_sp" id="clr_102" onclick="SetColor('102', '#6e99ca')" style="background-color: #6e99ca"></div><div class="zoom_sp" id="clr_135" onclick="SetColor('135', '#74869d')" style="background-color: #74869d"></div><div class="zoom_sp" id="clr_151" onclick="SetColor('151', '#789082')" style="background-color: #789082"></div><div class="zoom_sp" id="clr_217" onclick="SetColor('217', '#7c5c46')" style="background-color: #7c5c46"></div><div class="zoom_sp" id="clr_1011" onclick="SetColor('1011', '#002060')" style="background-color: #002060"></div><div class="zoom_sp" id="clr_1022" onclick="SetColor('1022', '#7f8e64')" style="background-color: #7f8e64"></div><div class="zoom_sp" id="clr_11" onclick="SetColor('11', '#80bbdb')" style="background-color: #80bbdb"></div><div class="zoom_sp" id="clr_23" onclick="SetColor('23', '#0d69ac')" style="background-color: #0d69ac"></div><div class="zoom_sp" id="clr_1023" onclick="SetColor('1023', '#8c5b9f')" style="background-color: #8c5b9f"></div><div class="zoom_sp" id="clr_153" onclick="SetColor('153', '#957977')" style="background-color: #957977"></div>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="purchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="../assets/img/icons/brick.png" id='purchaseDialogCurrencyIcon'> <span id='purchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='purchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="altPurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="altPurchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='altPurchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="../assets/img/icons/stud.png" id='altPurchaseDialogCurrencyIcon'> <span id='altPurchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='altPurchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+<div class="modal fade" id="collectiblePurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="collectiblePurchaseConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to purchase <b><span id='c_purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="../assets/img/icons/brick.png"> <span id='c_purchaseDialogPrice'>15</span>?
+  </div>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='c_purchaseDialogConfirmButton'>Yes</button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="detailConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="detailConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Update Item Details</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form method="post">
+      <div class="form-group">
+          <div class="modal-body">
+            <input class="form-control" type="text" name="itemname" placeholder="Item Name">
+            <br>
+            <textarea class="form-control" name="itemdescription" rows="6" cols="50" placeholder="Item Description"></textarea>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='detailDialogConfirmButton' onclick="UpdateDetails()">Update</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+          </div>
+      </div>
+  </form>
+</div>
+</div>
+</div>
+
+    <div class="modal fade" id="sidebarModalActivity" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">
+              Notifications
+            </h4>
+
+          </div>
+          <div class="modal-body">
+
+
+            <div class="list-group list-group-flush my-n3">            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#" style="padding-top:0.75rem;padding-bottom:0.75rem">
+              <img src="../assets/img/navbar-logo-light.png" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                  <a href="index.html" class="dropdown-item">Profile</a>
+                  <a href="../login/index.html" class="dropdown-item">Settings</a>
+                  <a href="../login/index.html" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="../index.html" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item d-md-none">
+                  <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
+                   <span class="fe fe-bell"></span> Notifications
+                  </a>
+                </li>
+              </ul>
+              <ul class="navbar-nav mb-md-4">
+                                <li class="nav-item">
+                  <a class="nav-link " href="../games/index.html">
+                    <i class="fe fe-play"></i> Games
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="../shop/index.html">
+                    <i class="fe fe-shopping-bag"></i> Shop
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="../forum/index.html">
+                    <i class="fe fe-message-square"></i> Forum
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="../users/index.html">
+                    <i class="fe fe-users"></i> People
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="../guilds/index.html">
+                    <i class="fe fe-shield"></i> Guilds
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="../leaderboard.html">
+                    <i class="fe fe-bar-chart-2"></i> Leaderboards
+                  </a>
+                </li>
+                                              </ul>
+              <div class="mt-auto"></div>
+                            <div class="navbar-user d-none d-md-flex" id="sidebarUser">
+                <a href="#sidebarModalActivity" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropup">
+                  <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
+                    <a href="index.html" class="dropdown-item">Profile</a>
+                    <a href="../login/index.html" class="dropdown-item">Settings</a>
+                    <a href="../login/index.html" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="../index.html" class="dropdown-item">Logout</a>
+                  </div>
+
+                </div>
+                <a href="#sidebarModalSearch" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+        <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarSmallCollapse" aria-controls="sidebarSmallCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="../index.html">
+              <img src="#" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarSmallIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarSmallIcon">
+                  <a href="index.html" class="dropdown-item">Profile</a>
+                  <a href="../login/index.html" class="dropdown-item">Settings</a>
+                  <a href="../login/index.html" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="../index.html" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarSmallCollapse">
+
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr class="navbar-divider d-none d-md-block mt-0 mb-3">
+              <hr class="navbar-divider my-3">
+              <div class="mt-auto"></div>
+              <div class="mb-4" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Customize">
+                <a href="#modalDemo" class="btn btn-block btn-primary" data-toggle="modal">
+                  <i class="fe fe-sliders"></i> <span class="d-md-none ml-2">Customize</span>
+                </a>
+              </div>
+              <div class="navbar-user d-none d-md-flex flex-column" id="sidebarSmallUser">
+                <a href="#sidebarModalSearch" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+                <a href="#sidebarModalActivity" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropright">
+                  <a href="#" id="sidebarSmallIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarSmallIconCopy">
+                    <a href="index.html" class="dropdown-item">Profile</a>
+                    <a href="../login/index.html" class="dropdown-item">Settings</a>
+                    <a href="../login/index.html" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="../index.html" class="dropdown-item">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+
+      <nav class="navbar navbar-expand-lg " id="topnav">
+        <div class="container">
+          <div class="navbar-user">
+            <div class="dropdown mr-4 d-none d-lg-flex">
+
+              <a href="#" class="navbar-user-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon">
+                  <i class="fe fe-bell"></i>
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-card">
+                <div class="card-header">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h5 class="card-header-title">
+                        Notifications
+                      </h5>
+
+                    </div>
+                    <div class="col-auto">
+                      <a href="#!" class="small">
+                        View all
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="list-group list-group-flush my-n3">
+                                      </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a href="#" class="avatar avatar-sm dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href="index.html" class="dropdown-item">Profile</a>
+                <a href="../login/index.html" class="dropdown-item">Settings</a>
+                <a href="../login/index.html" class="dropdown-item">Transactions</a>
+                <hr class="dropdown-divider">
+                <a href="../index.html" class="dropdown-item">Logout</a>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
+
+            <form class="mt-4 mb-3 d-md-none">
+              <input type="search" class="form-control form-control-rounded" placeholder="Search" aria-label="Search">
+            </form>
+
+          </div>
+
+        </div>
+      </nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+          <div class="container-fluid">
+            <form class="form-inline mr-4 d-none d-md-flex">
+              <div class="input-group input-group-flush input-group-merge" data-toggle="" data-options='{"valueNames": ["name"]}'>
+                <input type="search" autocomplete="off" class="form-control form-control-prepended dropdown-toggle search" id='headerSearchDesktop' data-toggle="dropdown" placeholder="Search" onchange="OnSearchBarChange(headerSearchDesktop)">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </div>
+
+                <script>
+                  $("#headerSearchDesktop").on("input", OnSearchBarChange)
+                </script>
+
+                <div class="dropdown-menu dropdown-menu-card">
+                  <div class="card-body">
+                    <div class="list-group list-group-flush list my-n3" id='searchbar_content'>
+                      <center class="mt-5 mb-5"><h1 class="display-3"><i class="fe fe-search text-secondary"></i></h1><h5 class="header-pretitle">Start typing to search Polytoria</h5></center>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="navbar-user">
+                              <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-primary" onclick="document.location = '../login/index.html'">Log in</button>
+                </div>
+                <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-success" onclick="document.location = '../login/new.html'">Sign up</button>
+                </div>
+                          </div>
+
+          </div>
+        </nav>
+
+        <div class="container" style="max-width: 1300px;">
+  <div class="alert alert-primary poly-alert" role="alert">
+    <i class='fe fe-alert-circle' style='float: left;'></i>Client is temporarily unavailable for macOS and Linux.<i class='fe fe-alert-circle' style='float: right;'></i>
+  </div>
+</div>
+      <div class="container" style="max-width: 1300px; display: none" id="4aabe7256ea56d1b2598a8ce6b5d26680dffaf4926f50253d05c79b32bedf755">
+        <div class="alert alert-danger" style="text-align: center; margin: 5px auto -10px auto; max-width: 1200px;" role="alert">
+          <b>L<span style="font-size: 0px;">tbEfja3xiB3kvWziA8EwVFe37iwwn4bJ4HJv2sUBW1frpnbke1oTRZ1kRKmPqqs0</span>ooks l<span style="font-size: 0px;">kLtjCdBW3CbXnwAJfIfwvZ7I4E40w2jtIhBQl96YLoPbYCj5OF2t1oXmpMZHeqBN</span>ike y<span style="font-size: 0px;">UeyNAEwRD2cd61xFdH0UAs8vW233MWKt6nAzvDhJwRUvcgqUf4l5ugeSRYcfM2Zj</span>ou're u<span style="font-size: 0px;">LK509USff6McNsIeRrmOwUEdU5cCMlAIjCVyV5fyMuIA0MnVyEfEzA2CBoYqNTuS</span>si<span style="font-size: 0px;">oExrS3lg7hbiSMMYWzjlLsO8VxgrWXvD5nVDx2PsOBtrTr1CEdB6J0hEwVI67ajB</span>ng a<span style="font-size: 0px;">muQYJSD8s0NdulD6Paqdp1shGpimCWCdKvHVeWnG8zbT1LjfSvLuLN3a228UpXME</span>n a<span style="font-size: 0px;">PIpJ7Y8Hpu2lizOUmjFMza2bF1SrCX6ihmkKex8UXAOUwG1w65pxVkQENbCGn3DK</span>d<span style="font-size: 0px;">ypJvw7Q0wpQWB2fc5M9IlCgsXeYJn0fdYZLtal6XMNED1LS9Kr0vtB13qDJhAxLE</span>bl<span style="font-size: 0px;">f7m09pLN2bIBB7Y7BG8KnAJ1KwU59qbGl7sCvIYCFatkf8VMYvWxI7GCkaonozDR</span>ock<span style="font-size: 0px;">Kepa80wbZAgEZq6g6iuAWVHgXROAW5wvjQiv0DgOKw6S9hv4hX3nbKWAs9E7arUM</span>er!</b> P<span style="font-size: 0px;">WndcG2dTFZNPwp1TEyvoxoXYVPIYIdtB9gnzx32VaIGxwGocwRb6hEN40ZOlLIwe</span>lea<span style="font-size: 0px;">FjzpBwYBqcbVGwSShYmqYvB7mcfeaiwRbSf22TGXORcC7lMn8qzQp2w1ngSIsRVv</span>se consider di<span style="font-size: 0px;">66PMs3nuHqMaJcqr2WmxsBEKcuy7SYtjwcRw6qGSm3aJfTmZcF1Lf1ZjpxXNXFLq</span>sab<span style="font-size: 0px;">UvX5nRpovwic7NmVOjn5Jr3k7B9veWMm39tggWEVC5I5WkSdAfbm1p6wDHJIpXBd</span>ling yo<span style="font-size: 0px;">8z6r0Dt9u8zLEr409dI3C1DUvc2CbWVppUjV0FUcgFqFi3A5oYOOmgmzR5gNqpPn</span>ur ad<span style="font-size: 0px;">eIgNNYU6JOxLhE5hQWZZZyuJxoVY10ybRNaiwW0cE361Xzig7ZXoCKVAN1boI6sR</span>blo<span style="font-size: 0px;">dpQxoN5c4zCjFAwQIp28Pc1gWbNdgvNyBlQB5Ozfs638YUWlrkPGYxu3LxnLNbya</span>cker to he<span style="font-size: 0px;">uGAIzjzoJ0xsxahKIxMQ8wexaX8k8md50eGYj9oM41v7pGgYTel2Y0Zadsul7qVO</span>lp u<span style="font-size: 0px;">FeRRKHVMRos1A7WVN6xeayPFjSKLinIyiJvo70pCcjyC1iIrNFuoDw9vIdi92acx</span>s p<span style="font-size: 0px;">ggBooaBmMrOQfSmzguUojjMatUUnViKBHP2jsrpu6KCud96XG2ZmSU9z6lNmtIpE</span>ay o<span style="font-size: 0px;">qRmara9cY15MpQi2qBu7dLg6IFfpuRVNRRxDSn17WubsT430FDVJ9Zm1Q4FHdjmE</span>ur se<span style="font-size: 0px;">YDSTSeo87qaD8s5nLVGRtBhD9Zse5z2PnZzUK4HmLaAPHGn0zmeji04c3fsWRo8G</span>rver<span style="font-size: 0px;">kntLDQLF30m182FXpgCSekIQ8KEJQGpURnq87d0fwvEnFWbkkavlZuQHZg0bDVfi</span>s.
+        </div>
+      </div>
+
+        <script>
+          var currentPostId = 0;
+
+          function SelectPost(id) {
+            currentPostId = id;
+          }
+
+          function AddReaction(eid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + currentPostId, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+
+          function AddReactionWithId(eid, pid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + pid, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+        </script>
+                <!-- End of header -->
+
+        
+            <center class="mt-3">
+              <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+              <!-- bloxtopia_top -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-1944231940353964"
+                   data-ad-slot="2177056373"
+                   data-ad-format="auto"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </center>
+            
+      <meta property="og:title" content="cod" />
+<meta property="og:image" content="https://polytoria.com/assets/thumbnails/avatars/headshots/40bd29ecb1cd675e6ed4f884ab2c570b.png" />
+<meta property="og:description" content="i dont trade, stop sending me trades unless its a very good trade on my end and i get an oper or something
+
+game dev, content creator, shirt and pants designer, professional forum poster, no lifer
+youtube.com/dottyb
+
+pt-verify-660145890924691498" />
+<meta property="og:site_name" content="Polytoria" />
+<meta property="og:url" content="https://polytoria.com/user/5141" />
+<script>
+$(function() {
+    document.title = "cod's Profile - Polytoria";
+});
+</script>
+<br><br>
+<div class="main-content">
+  <div class="container" style="max-width: 1200px;">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row align-items-center mb-1">
+                    <div class="col-auto">
+            <div class="dropdown">
+              <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fe fe-alert-circle"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-left" style="width: 300px;">
+                <div style="padding: 10px; width: 100%;">
+                  Past usernames:<br> <span class="text-muted">cod, sum, fatty, ergw434tuu8t, KanyeWestVEVO, XxSwagGamer420Xx, DiamondKid97, Pharting, fatty, WhenTheImposterIsSus</span>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="col ml-n2">
+            <span style="font-size: 20px; font-weight: 400">&nbsp;<span class="text-muted">●</span> cod</span>
+          </div>
+          <div class="col-auto">
+            <div class="dropdown">
+              <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fe fe-more-vertical"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(17px, 25px, 0px);">
+                                <a href="../error18c4.html" class="dropdown-item text-danger">
+                  Report abuse
+                </a>
+                              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+          <img src="../assets/thumbnails/avatars/40bd29ecb1cd675e6ed4f884ab2c570b.png" class="img-fluid">
+        </div>
+        </div>
+        <div class="btn-group btn-block" role="group">
+          <button type="button" class="btn btn-success" id='btn-addfriend' onclick="addfriend()">Add friend</button>
+          <button type="button" class="btn btn-primary" id='btn-message' onclick="document.location = '../login/index.html'">Message</button>
+        </div>
+        <button type="button" class="btn btn-block btn-sm btn-primary" id='btn-report' onclick="document.location = '../login/index.html'">Trade</button>
+        <button type="button" class="btn btn-block btn-sm btn-primary mb-4" id='btn-report' onclick="StartConversation(5141, '7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454')">Chat</button>
+                <h3>About cod</h3>
+        <div class="card" style="padding: 15px;">
+          i dont trade, stop sending me trades unless its a very good trade on my end and i get an oper or something<br />
+<br />
+game dev, content creator, shirt and pants designer, professional forum poster, no lifer<br />
+youtube.com/dottyb<br />
+<br />
+pt-verify-660145890924691498        </div>
+        
+        <h3>Statistics</h3>
+        <div class="card" style="padding: 15px;">
+          <div style="display: block">
+            <b>Profile views: </b><span style="float: right">1,372</span>
+          </div>
+          <div style="display: block">
+            <b>Item sales: </b><span style="float: right">182</span>
+          </div>
+          <div style="display: block">
+            <b>Forum posts: </b><span style="float: right">313</span>
+          </div>
+          <div style="display: block">
+            <b>Join date: </b><span style="float: right">26/05/2020</span>
+          </div>
+          <div style="display: block">
+            <b>Last seen: </b><span style="float: right">1 day ago</span>
+          </div>
+          <div style="display: block">
+            <b>Net worth: </b><span style="float: right"> <img src="../assets/img/icons/brick_filled.png" style="display: inline-block;vertical-align: middle;" width="16" alt="brick"> &nbsp;<span id='networth'>0</span></span>
+          </div>
+      </div>
+
+      <h3>Guilds</h3>
+                  <div class="card mb-3">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <a href="../guilds/251.html" class="avatar avatar-lg">
+                      <img src="../assets/thumbnails/guilds/251.png" alt="Usd's Crib" class="avatar-img rounded-circle">
+                    </a>
+                  </div>
+                  <div class="col ml-n2">
+                    <h4 class="mb-1">
+                      <a href="../guilds/251.html">Usd's Crib</a>
+                    </h4>
+                    <p class="card-text small text-muted mb-1" style="display: -webkit-box; max-height: 60px; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis; overflow-y: hidden;">
+                      Join if you're hot
+
+PM me for a role, or I'll rank randomly
+
+I'll probably make some clothing soon if I can
+
+PEACE                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                        <div class="card mb-3">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <a href="../guilds/262.html" class="avatar avatar-lg">
+                      <img src="../assets/thumbnails/guilds/262.png" alt="260" class="avatar-img rounded-circle">
+                    </a>
+                  </div>
+                  <div class="col ml-n2">
+                    <h4 class="mb-1">
+                      <a href="../guilds/262.html">260</a>
+                    </h4>
+                    <p class="card-text small text-muted mb-1" style="display: -webkit-box; max-height: 60px; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis; overflow-y: hidden;">
+                      mainly just a stupid guild, join if u want a role.
+
+join our discord: https://discord.gg/5zsNh4Gf
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                        <div class="card mb-3">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <a href="../guilds/169.html" class="avatar avatar-lg">
+                      <img src="../assets/thumbnails/guilds/169.png" alt="Ant" class="avatar-img rounded-circle">
+                    </a>
+                  </div>
+                  <div class="col ml-n2">
+                    <h4 class="mb-1">
+                      <a href="../guilds/169.html">Ant</a>
+                    </h4>
+                    <p class="card-text small text-muted mb-1" style="display: -webkit-box; max-height: 60px; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis; overflow-y: hidden;">
+                      The best cheap, and quality clothes on superium.
+
+----------------------------------
+
+Ranks:
+? Rich Investor ? : 500 Pieces of Clothing From Us!
+? Investor ? : 250 Pieces of Clothing From Us!
+?? Small Investor ? : 100 Pieces of Clothing From Us!
+? Rich Supporter ?? : 50 Pieces of Clothing From Us!
+? Supporter ? : 25 Pieces of Clothing From Us!
+? Small Supporter ? : 10 Pieces of Clothing From Us!
+
+----------------------------------
+
+Cheapest Clothing, and Best Looking!                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                        <div class="card mb-3">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <a href="../guilds/182.html" class="avatar avatar-lg">
+                      <img src="../assets/thumbnails/guilds/182.png" alt="Got Milk?" class="avatar-img rounded-circle">
+                    </a>
+                  </div>
+                  <div class="col ml-n2">
+                    <h4 class="mb-1">
+                      <a href="../guilds/182.html">Got Milk?</a>
+                    </h4>
+                    <p class="card-text small text-muted mb-1" style="display: -webkit-box; max-height: 60px; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis; overflow-y: hidden;">
+                      At &quot;Got Milk?&quot; we make all sorts of clothing! From aesthetic, to pants, to T-Shirts, to memes, to flannel.. we have it all!
+
+RANKS:
+
+New Customer: 0 clothing bought
+Experienced Customer: 5 clothing bought
+Mega Customer: 20 clothing bought
+Ultra Customer: 35 clothing bought
+Legendary Customer: 50+ clothing bought
+Donator: Donate 25+ Bricks
+Mega Donator: Donate 40 Bricks
+Omega Donator: Donate 100 Bricks
+Godly Donator: Donate 500 Bricks
+
+IF YOU NEED A RE-RANK PLEASE MESSAGE ME IN POLYTORIA MESSAGES.
+
+Discord: https://discord.gg/BNZd6SDM                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <div class="list-group">
+              </div>
+    </div>
+      <div class="col-sm">
+        <ul class="nav nav-pills nav-fill" style="margin-bottom: 15px;">
+          <li class="nav-item">
+            <a class="nav-link" id="tab_user_btn" href="#" onclick="ToggleTab('tab_user')">cod</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="tab_wall_btn" href="#" onclick="ToggleTab('tab_wall')">Wall</a>
+          </li>
+                      <li class="nav-item">
+              <a class="nav-link" id="tab_inventory_btn" href="#" onclick="ToggleTab('tab_inventory')">Inventory</a>
+            </li>
+                <li class="nav-item">
+          <a class="nav-link" id="tab_favourites_btn" href="#" onclick="ToggleTab('tab_favourites')">Favourites</a>
+        </li>
+        </ul>
+        <div id="tab_user" style="display:none;">
+                <h3>Games</h3>
+        <div id="games_accordion" style="margin-bottom: 15px;">
+                        <div class="card" style="margin: 0;">
+                <div class="card-header" id="heading_177">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_177" aria-expanded="true" aria-controls="collapse_177">
+                      Cod's Mega Hard Obby..                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse_177" class="collapse show" aria-labelledby="heading_177" data-parent="#games_accordion">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="games-accordion-thumbnail">
+                          <img src="../assets/img/game_unavail.png">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h1>Cod's Mega Hard Obby..</h1>
+                        <p></p>
+                        <hr>
+                        <a type="button" style="margin-bottom: auto;" class="btn btn-success btn-lg btn-block" href="../games/177.html">Play</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                          <div class="card" style="margin: 0;">
+                <div class="card-header" id="heading_179">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_179" aria-expanded="true" aria-controls="collapse_179">
+                      WALK UP 999 MILES AND 999999 STAIRS FOR INF BRIC                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse_179" class="collapse" aria-labelledby="heading_179" data-parent="#games_accordion">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="games-accordion-thumbnail">
+                          <img src="../assets/img/game_unavail.png">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h1>WALK UP 999 MILES AND 999999 STAIRS FOR INF BRIC</h1>
+                        <p></p>
+                        <hr>
+                        <a type="button" style="margin-bottom: auto;" class="btn btn-success btn-lg btn-block" href="../games/179.html">Play</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                          <div class="card" style="margin: 0;">
+                <div class="card-header" id="heading_187">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_187" aria-expanded="true" aria-controls="collapse_187">
+                      The Cavern                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse_187" class="collapse" aria-labelledby="heading_187" data-parent="#games_accordion">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="games-accordion-thumbnail">
+                          <img src="../assets/thumbnails/games/187ae52.png?v=5">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h1>The Cavern</h1>
+                        <p>A hangout game for trading, chilling, and anything else idk lol</p>
+                        <hr>
+                        <a type="button" style="margin-bottom: auto;" class="btn btn-success btn-lg btn-block" href="../games/187.html">Play</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                          <div class="card" style="margin: 0;">
+                <div class="card-header" id="heading_188">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_188" aria-expanded="true" aria-controls="collapse_188">
+                      cod's game (7)                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse_188" class="collapse" aria-labelledby="heading_188" data-parent="#games_accordion">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="games-accordion-thumbnail">
+                          <img src="../assets/img/game_unavail.png">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h1>cod's game (7)</h1>
+                        <p></p>
+                        <hr>
+                        <a type="button" style="margin-bottom: auto;" class="btn btn-success btn-lg btn-block" href="../games/188.html">Play</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    </div>
+      <h3><a href="../login/index.html">Friends (11)</a></h3>
+      <div class="card" style="padding: 15px;">
+        <div class="row">
+          <div class="col-4 col-sm-3"><a href='9284.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/7a06c5c27ad053e92a704d4f83e26df4.png" style='width: 100%' title="Nextrevit" alt="Nextrevit"><br>
+                  <center><span style="font-size: 12px;">Nextrevit</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='5249.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/3cef598db66733a1e81ef9e4d33ee345.png" style='width: 100%' title="Alyx" alt="Alyx"><br>
+                  <center><span style="font-size: 12px;">Alyx</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='5150.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/457effb1d02b00fb5ea631813954b2a7.png" style='width: 100%' title="Damir" alt="Damir"><br>
+                  <center><span style="font-size: 12px;">Damir</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='3418.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/42ce61522997f3d48aa8f185bb21117b.png" style='width: 100%' title="Rey O.Mighty" alt="Rey O.Mighty"><br>
+                  <center><span style="font-size: 12px;">Rey O.Mighty</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='3270.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/f56b038f0b5fc361233b7e59c18cd4a8.png" style='width: 100%' title="CyA" alt="CyA"><br>
+                  <center><span style="font-size: 12px;">CyA</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='2.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/9ad85e3af166457271d07ff309b23420.png" style='width: 100%' title="willemsteller" alt="willemsteller"><br>
+                  <center><span style="font-size: 12px;">willemsteller</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='8708.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/7aab54ec4f83e3994933e3daac644115.png" style='width: 100%' title="rares" alt="rares"><br>
+                  <center><span style="font-size: 12px;">rares</span></center>
+                </div></a></div><div class="col-4 col-sm-3"><a href='15106.html'><div class="card" style="padding: 5px;">
+                  <img src="../assets/thumbnails/avatars/731425c4c64452bc00c23ad412b9c1f9.png" style='width: 100%' title="plz" alt="plz"><br>
+                  <center><span style="font-size: 12px;">plz</span></center>
+                </div></a></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>        </div>
+      </div>
+      <h3>Achievements</h3>
+      <div class="card" style="padding: 15px;">
+        <div class="row">
+          
+                <div class="col-4 col-sm-3"><div class="card" style="padding: 5px;">
+                  <img src="../assets/img/badges/wealth_1000.png" style='width: 100%' title="Have a trade value of at least 1,000 Bricks" alt="wealth_1000"><br>
+                  <center><span style="font-size: 12px;">Wealthy</span></center>
+                </div></div>
+                
+                <div class="col-4 col-sm-3"><div class="card" style="padding: 5px;">
+                  <img src="../assets/img/badges/wealth_10000.png" style='width: 100%' title="Have a trade value of at least 10,000 Bricks" alt="wealth_10000"><br>
+                  <center><span style="font-size: 12px;">Rich</span></center>
+                </div></div>
+                
+                <div class="col-4 col-sm-3"><div class="card" style="padding: 5px;">
+                  <img src="../assets/img/badges/veteran.png" style='width: 100%' title="Awarded to our oldest users. Have an account older than 1 year to get this achievement." alt="veteran"><br>
+                  <center><span style="font-size: 12px;">Veteran</span></center>
+                </div></div>
+                <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>        </div>
+      </div>
+
+        </div>
+
+        <div id="tab_wall" style="display:none;">
+          <div class="card">
+            <div class="card-body">
+              <form id="PostForm" method="post">
+              	<div class="form-group">
+              		<textarea oninput='postwall_oninput()' name='newpost' class="form-control form-control-flush form-control-auto" data-toggle="autosize" rows="3" maxlength='500' placeholder="Leave a message on cod's profile!" id="postwall_textarea"></textarea>
+              	</div>
+              	<div class="row align-items-center">
+              		<div class="col">
+              			<small id='characterCounterPostWall' style="color: #95aac9">
+              			0/500
+              			</small>
+              		</div>
+              		<div class="col-auto">
+              			<button class="btn btn-sm btn-rounded-circle btn-white g-recaptcha" data-sitekey="6Lc92Z0UAAAAALVq05HduzsySLoRHe9UyYS1eTwl" data-callback='Post' id="FormButton" type="submit" name="wallPost">
+              			<i class="fe fe-send"></i>
+              			</button>
+              		</div>
+              	</div>
+              	</div>
+              	</div>
+              </form>
+
+                <div id='wall-post-contents'>
+
+                </div>
+
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="wallpagedn()" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="javascript:void(0)">Page <span id="wallPageIndicator">1</span> of <span id="wallPageCount">1</span></a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="wallpageup()" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+
+        </div>
+
+        <div id="tab_inventory" style="display:none;">
+                    <div class="row">
+            <div class="col-sm-3">
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#" onclick="invcat('hat')" id='setinvtype_hat'>Hats</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="invcat('face')" id='setinvtype_face'>Faces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="invcat('tool')" id='setinvtype_tool'>Tools</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="invcat('tshirt')" id='setinvtype_tshirt'>T-Shirts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="invcat('shirt')" id='setinvtype_shirt'>Shirts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="invcat('pants')" id='setinvtype_pants'>Pants</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-9">
+              <div class="row" id='inventoryItems'>
+
+              </div>
+              <nav>
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="invpagedn()" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="javascript:void(0)">Page <span id="currentInvPageIndicator">1</span></a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="invpageup()" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+                </div>
+        <div id="tab_favourites" style="display:none;">
+          <div class="row">
+            <div class="col-sm-3">
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#" onclick="favcat('hat')" id='setfavtype_hat'>Hats</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="favcat('face')" id='setfavtype_face'>Faces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="favcat('tool')" id='setfavtype_tool'>Tools</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="favcat('tshirt')" id='setfavtype_tshirt'>T-Shirts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="favcat('shirt')" id='setfavtype_shirt'>Shirts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="favcat('pants')" id='setfavtype_pants'>Pants</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-9">
+              <div class="row" id='favouriteItems'>
+
+              </div>
+              <nav>
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="favpagedn()" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="javascript:void(0)">Page <span id="currentFavPageIndicator">1</span></a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" onclick="favpageup()" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function Post() {
+  $("#PostForm").submit();
+}
+  function ToggleTab(tab) {
+    var tabs = ["tab_user", "tab_inventory", "tab_wall", "tab_favourites"];
+
+    tabs.forEach(t => {
+      var x = document.getElementById(t);
+      if (t != tab) {
+        x.style.display = "none";
+        $("#"+t + "_btn").removeClass("active");
+      } else {
+        x.style.display = "block";
+        $("#"+t + "_btn").addClass("active");
+      }
+    });
+  }
+
+  function invcat(newtype) {
+    page = 0;
+    $("#setinvtype_" + type).removeClass("active");
+    $("#setinvtype_" + newtype).addClass("active");
+
+    type = newtype;
+    LoadInventoryItems();
+  }
+
+  function favcat(newtype) {
+    fpage = 0;
+    $("#setfavtype_" + ftype).removeClass("active");
+    $("#setfavtype_" + newtype).addClass("active");
+
+    ftype = newtype;
+    LoadFavouriteItems();
+  }
+
+  function postwall_oninput() {
+    var statusInput = document.getElementById("postwall_textarea");
+    var text = statusInput.value;
+
+    let textLength = text.length;
+
+    document.getElementById("characterCounterPostWall").innerHTML = textLength + "/500";
+
+    if (textLength == 500) {
+      document.getElementById("characterCounterPostWall").style.color = "red";
+    } else if (textLength >= 400) {
+      document.getElementById("characterCounterPostWall").style.color = "#f6c343";
+    } else {
+      document.getElementById("characterCounterPostWall").style.color = "#95aac9";
+    }
+  }
+
+  ToggleTab("tab_user");
+
+  let invtemplate = `<div class="col-6 col-lg-4">
+    <a href="/shop/{0}" class="text-reset"></a><div class="card zoom_sp" style="cursor: pointer;"><a href="/shop/{0}" class="text-reset">{7}
+      </a><div class="card-body"><a href="/shop/{0}" class="text-reset">
+        <img src="{1}" class="card-img"><br>
+        <h3 style="margin-top: 12px;width:100%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis">{2}</h3>
+        </a><div style="margin-top: -12px;width:100%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis"><a href="/shop/{0}" class="text-reset">By: </a><a style="margin-top: 12px;" href="/user/{3}">{4}</a><br><span style="font-size: 16px;"><img src="/assets/img/icons/{5}_filled.png" height="16" width="16"> &nbsp; {6}</span></div>
+      </div>
+    </div>
+  </div>`;
+  let limit = 6;
+  var page = 0;
+  var type = "hat";
+
+  function LoadInventoryItems() {
+    $.getJSON("/api/fetch/inventory?id=5141&type="+ type +"&limit="+limit+"&p="+ page, function( data ) {
+      $("#inventoryItems").html("");
+  		$.each(data, function (i, item) {
+        var limitedLabel = ""
+        if (item.is_limited == 1) {
+          limitedLabel = `<div class="ribbon ribbon-top-right"><span>Limited</span></div>`
+        }
+        $("#inventoryItems").append(invtemplate.format(item.id, item.thumbnail, item.name, item.creator, item.creatorname, item.currency, item.price, limitedLabel));
+        $("#currentInvPageIndicator").html(page+1);
+  		});
+  	});
+  }
+
+  function invpageup() {
+    page++;
+
+    LoadInventoryItems();
+  }
+
+  function invpagedn() {
+    if (page == 0) return;
+    page--;
+
+    LoadInventoryItems();
+  }
+
+  let flimit = 6;
+  var fpage = 0;
+  var ftype = "hat";
+
+  function LoadFavouriteItems() {
+    $.getJSON("/api/fetch/favourites?id=5141&type="+ ftype +"&limit="+flimit+"&p="+ fpage, function( data ) {
+      $("#favouriteItems").html("");
+  		$.each(data, function (i, item) {
+        var limitedLabel = ""
+        if (item.is_limited == 1) {
+          limitedLabel = `<div class="ribbon ribbon-top-right"><span>Limited</span></div>`
+        }
+        $("#favouriteItems").append(invtemplate.format(item.id, item.thumbnail, item.name, item.creator, item.creatorname, item.currency, item.price, limitedLabel));
+        $("#currentFavPageIndicator").html(fpage+1);
+  		});
+  	});
+  }
+
+  function favpageup() {
+    fpage++;
+
+    LoadFavouriteItems();
+  }
+
+  function favpagedn() {
+    if (fpage == 0) return;
+    fpage--;
+
+    LoadFavouriteItems();
+  }
+
+
+
+  function LoadFriendButton() {
+    $.getJSON("/api/users/friendbutton?id=5141", function(data) {
+      $("#btn-addfriend").removeClass("btn-primary");
+      $("#btn-addfriend").removeClass("btn-success");
+      $("#btn-addfriend").removeClass("btn-danger");
+      $("#btn-addfriend").addClass("btn-" + data['color']);
+      $("#btn-addfriend").html(data['text']);
+      $("#btn-addfriend").attr("disabled", data['disabled']);
+      $("#btn-addfriend").prop("onclick", null).off("click");
+      if (data['arefriends']) {
+        document.getElementById('btn-addfriend').onclick = removefriend;
+      } else {
+        document.getElementById('btn-addfriend').onclick = addfriend;
+      }
+    });
+  }
+
+  function addfriend() {
+    $("#btn-addfriend").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
+    $.post("/api/users/addfriend", { "csrf" : "7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454", "id": 5141}, function(data) {
+      if (data == "success") {
+        LoadFriendButton();
+      } else {
+        alert(data);
+      }
+    });
+  }
+
+  function removefriend() {
+    $("#btn-addfriend").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
+    $.post("/api/users/removefriend", { "csrf" : "7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454", "id": 5141}, function(data) {
+      if (data == "success") {
+        LoadFriendButton();
+      } else {
+        alert(data);
+      }
+    });
+  }
+  let wallItem = `<div class="card">
+    <div class="card-body">
+        <div class="mb-3">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a href="/user/{0}" class="avatar">
+                        <img src="{1}" alt="..." class="avatar-img rounded-circle" />
+                    </a>
+                </div>
+                <div class="col ml-n2">
+                    <h4 class="card-title mb-1">{5}{2} &nbsp;{6}</h4>
+                    <p class="card-text small text-muted"><span class="fe fe-clock"></span> <time>{3}</time></p>
+                </div>
+                <div class="col-auto">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="/report/userwall/{7}" class="dropdown-item text-danger">
+                                Report abuse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="mb-3">
+            {4}
+        </p>
+    </div>
+</div>
+`;
+var wallPage = 0;
+var wallPageCount = 1;
+  function LoadWall() {
+    $.getJSON("/api/fetch/user/wall?id=5141&p=" + wallPage, function (data, textStatus, request) {
+      wallPageCount = request.getResponseHeader('Page-Count');
+      $("#wall-post-contents").html("");
+      $("#wallPageIndicator").html(wallPage+1);
+      $("#wallPageCount").html(wallPageCount);
+      data.forEach((item, i) => {
+        let badge = ``;
+        let pin = ``;
+        if (item.badge === true) {
+          badge = `<img src="/assets/img/poly_const.png" height="18" width="18"> `;
+        }
+
+        if (item.pinned != "0") {
+          pin = "<i class='fe fe-bookmark'></i>";
+        }
+
+        $("#wall-post-contents").append(wallItem.format(item.user_from, item.avatar, item.username, item.time, item.content, badge, pin, item.id));
+      });
+    })
+  }
+
+  function DeleteWall(id) {
+    $.post("/api/users/delete-wall", {id: id, csrf: '7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454'}, function (data) {
+      LoadWall();
+    });
+  }
+
+  function PinWall(id) {
+    $.post("/api/users/pin-wall", {id: id, csrf: '7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454'}, function (data) {
+      LoadWall();
+    });
+  }
+
+  function wallpageup() {
+    if (wallPage < wallPageCount-1)
+      wallPage++;
+    LoadWall();
+  }
+
+  function wallpagedn() {
+    if (wallPage > 0)
+      wallPage--;
+    LoadWall();
+  }
+
+  function Block() {
+    $.post("/api/users/block", {id: 5141, csrf: "7e9ad35faa1d6d8d67f561d173c6e972dfae9d806f4d37511b6b6f5bfa9ec454"}, function (data) {
+      if (data == "blocked") {
+        $("#block-user").html("Unblock");
+      } else {
+        $("#block-user").html("Block");
+      }
+    })
+  }
+
+  function LoadWorth() {
+    $.getJSON ("https://api.polytoria.com/v1/users/user?id=5141", function (data) {
+      $("#networth").html(new Intl.NumberFormat().format(data['TradeValue']));
+    });
+  }
+
+  $(function() {
+    LoadWorth();
+    LoadInventoryItems();
+    LoadFavouriteItems();
+    LoadFriendButton();
+    $(".toast").toast('show');
+    LoadWall();
+  });
+</script>
+
+<div class="chat">
+
+</div>
+
+    <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img src="../assets/img/navbar-logo-light.png" width="150">
+            <small style="margin-top: 15px;"class="d-block mb-3 text-muted">© 2019-2021</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Site</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="../index.html">Home</a></li>
+              <li><a class="text-muted" href="../games/index.html">Games</a></li>
+              <li><a class="text-muted" href="../shop/index.html">Shop</a></li>
+              <li><a class="text-muted" href="../forum/index.html">Forum</a></li>
+              <li><a class="text-muted" href="../users/index.html">People</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://blog.polytoria.com/">Blog</a></li>
+              <li><a class="text-muted" href="../privacy.html">Privacy Policy</a></li>
+              <li><a class="text-muted" href="../terms.html">Terms of Service</a></li>
+              <li><a class="text-muted" href="https://corp.polytoria.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Social</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://discord.gg/ZgCQNYz2Cj">Discord</a></li>
+              <li><a class="text-muted" href="https://twitter.com/PolytoriaGame">Twitter</a></li>
+              <li><a class="text-muted" href="https://www.youtube.com/channel/UCuHHIDVEYqOAp6SQwOp67zw">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+</div>
+<!-- JAVASCRIPT
+================================================== -->
+  <script>
+    if( window.canRunAds === undefined ){
+      $("#4aabe7256ea56d1b2598a8ce6b5d26680dffaf4926f50253d05c79b32bedf755").css("display", "block");
+    }
+  </script>
+  
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/libs/%40shopify/draggable/lib/es5/draggable.bundle.legacy.js"></script>
+<script src="../assets/libs/autosize/dist/autosize.min.js"></script>
+<script src="../assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+<script src="../assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+<script src="../assets/libs/highlightjs/highlight.pack.min.js"></script>
+<script src="../assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="../assets/libs/chart.js/Chart.extension.min.js"></script>
+<!--<script src='/assets/js/notifications.js?v=1626869596'></script>-->
+<script src="../assets/js/Superium68b3.js?ver=1"></script>
+<script src="../assets/js/theme.min.js"></script>
+<script src="../assets/js/modal.js"></script>
+<script type="text/javascript">
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+  console.log("%cSTOP!", "background-color: red; color: white; font-size: 96px;");
+  console.log("If anybody asks you to paste anything here: DON'T DO IT!\nThey are trying to steal your account and you will lose all your items and currency!")
+})
+
+</script>
+</body>
+
+<!-- Mirrored from polytoria.com/user/5141 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:19:10 GMT -->
+</html>

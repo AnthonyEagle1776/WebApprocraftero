@@ -1,0 +1,796 @@
+
+<!doctype html>
+<html lang="en">
+  
+<!-- Mirrored from polytoria.com/leaderboard?c=views by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:17:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <script src="cdn-cgi/apps/head/d2xo1he7Kns6Z1vqZzVy46dfEyI.js"></script><link rel="preload" href="assets/css/superium-theme-light.css" as="style">
+    <link rel="preload" href="assets/js/theme.min.js" as="script">
+        <script data-ad-client="ca-pub-1944231940353964" async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <script src="../cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="../polyfill.io/v3/polyfill.min2d4a.js?version=3.52.1&amp;features=fetch"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+    <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/emoji-picker/fgEmojiPicker.js"></script>
+    <script
+  src="../code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src="assets/js/prebid-ads.js"></script>
+
+    <style>
+      .addreaction {
+        transition: transform .2s !important;
+      }
+      .addreaction:hover {
+        transform: scale(2) !important;
+        cursor: hand !important;
+        z-index: 100 !important;
+      }
+
+      .zoom_sp {
+          transition: transform .2s;
+      }
+
+      .zoom_sp:hover {
+        transform: scale(1.2);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      .zoom_upload {
+        transition: transform .2s;
+      }
+
+      .zoom_upload:hover {
+        transform: scale(1.1);
+        cursor: hand;
+        z-index: 100;
+      }
+
+      body.modal-open .main-content{
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+
+      body.modal-open .navbar {
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A free-to-play online brick building game for all ages. Customize your character on the site, buy and sell clothes, trade with other users and much more. Use the constructor to create beautiful scenes and play other people's games.">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="assets/fonts/feather/feather.min.css">
+    <script src="../www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="assets/css/superium-theme-light.css" id="stylesheetLight">
+    <link rel="stylesheet" href="assets/css/superium-theme-light.css" id="stylesheetDark">
+    <link rel="stylesheet" href="assets/css/Polytoria.css">
+    <title>Polytoria</title>
+    <style>
+    body {display: none}
+    </style>
+    <script>
+    localStorage.setItem("btColorScheme", "light")
+    localStorage.setItem("btNavColor", "default")
+    localStorage.setItem("btNavPosition", "combo")
+    localStorage.setItem("btSidebarSize", "base")
+    </script>
+
+    <script>
+      function OnSearchBarChange(id) {
+        var searchQuery = document.getElementById("headerSearchDesktop").value;
+
+        $.get( "/api/fetch/search?q=" + searchQuery, function( data ) {
+          $( "#searchbar_content" ).html( data );
+        });
+      }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WH2SEP7C8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WH2SEP7C8');
+      gtag('config', 'UA-184290222-1');
+    </script>
+  </head>
+  <body>
+        <div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px; top: 16px; right: 16px;z-index: 5000" id="poly-notif">
+
+    </div>
+    <div class="modal fade" id="downloadClientModal" tabindex="-1" role="dialog" aria-labelledby="downloadClientModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button><br>
+            <center>
+              <img src="assets/img/polytoria.png" width="64"><br><br>
+              <h1>Almost there!</h1>
+              <p>Download the Polytoria Client and start having fun!</p>
+              <a href="#" id='launcherDownloadUrl' class="btn btn-primary">Download Polytoria</a>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-card card" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-header-title" id="avatarColorModalTitle">
+                    Upload
+                  </h4>
+
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="overflow: hidden;">
+              <ul class="list-group list-group-flush list my-n3">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'login/index.html'">
+                      <div class="card-body">
+                        <img src="assets/img/uploadshirt.png" class="card-img"><br>
+                        Shirt
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'login/index.html'">
+                      <div class="card-body">
+                        <img src="assets/img/uploadpants.png" class="card-img"><br>
+                        Pants
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card zoom_upload" onclick="document.location = 'login/index.html'">
+                      <div class="card-body">
+                        <img src="assets/img/upload_tee.png" class="card-img"><br>
+                        T-Shirt
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="avatarColorModal" tabindex="-1" role="dialog" aria-labelledby="avatarColorModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="width: 390px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="avatarColorModalTitle">Choose Part Color</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="wrapper">
+              <div class="zoom_sp" id="clr_1027" onclick="SetColor('1027', '#9ff3e9')" style="background-color: #9ff3e9"></div><div class="zoom_sp" id="clr_38" onclick="SetColor('38', '#a05f35')" style="background-color: #a05f35"></div><div class="zoom_sp" id="clr_29" onclick="SetColor('29', '#a1c48c')" style="background-color: #a1c48c"></div><div class="zoom_sp" id="clr_1007" onclick="SetColor('1007', '#a34b4b')" style="background-color: #a34b4b"></div><div class="zoom_sp" id="clr_194" onclick="SetColor('194', '#a3a2a5')" style="background-color: #a3a2a5"></div><div class="zoom_sp" id="clr_119" onclick="SetColor('119', '#a4bd47')" style="background-color: #a4bd47"></div><div class="zoom_sp" id="clr_1015" onclick="SetColor('1015', '#aa00aa')" style="background-color: #aa00aa"></div><div class="zoom_sp" id="clr_1014" onclick="SetColor('1014', '#aa5500')" style="background-color: #aa5500"></div><div class="zoom_sp" id="clr_1003" onclick="SetColor('1003', '#111111')" style="background-color: #111111"></div><div class="zoom_sp" id="clr_1024" onclick="SetColor('1024', '#afddff')" style="background-color: #afddff"></div><div class="zoom_sp" id="clr_1026" onclick="SetColor('1026', '#b1a7ff')" style="background-color: #b1a7ff"></div><div class="zoom_sp" id="clr_1006" onclick="SetColor('1006', '#b480ff')" style="background-color: #b480ff"></div><div class="zoom_sp" id="clr_45" onclick="SetColor('45', '#b4d2e4')" style="background-color: #b4d2e4"></div><div class="zoom_sp" id="clr_1018" onclick="SetColor('1018', '#12eed4')" style="background-color: #12eed4"></div><div class="zoom_sp" id="clr_1008" onclick="SetColor('1008', '#c1be42')" style="background-color: #c1be42"></div><div class="zoom_sp" id="clr_21" onclick="SetColor('21', '#c4281c')" style="background-color: #c4281c"></div><div class="zoom_sp" id="clr_18" onclick="SetColor('18', '#cc8e69')" style="background-color: #cc8e69"></div><div class="zoom_sp" id="clr_1028" onclick="SetColor('1028', '#ccffcc')" style="background-color: #ccffcc"></div><div class="zoom_sp" id="clr_1002" onclick="SetColor('1002', '#cdcdcd')" style="background-color: #cdcdcd"></div><div class="zoom_sp" id="clr_5" onclick="SetColor('5', '#d7c59a')" style="background-color: #d7c59a"></div><div class="zoom_sp" id="clr_106" onclick="SetColor('106', '#da8541')" style="background-color: #da8541"></div><div class="zoom_sp" id="clr_101" onclick="SetColor('101', '#da867a')" style="background-color: #da867a"></div><div class="zoom_sp" id="clr_105" onclick="SetColor('105', '#e29b40')" style="background-color: #e29b40"></div><div class="zoom_sp" id="clr_208" onclick="SetColor('208', '#e5e4df')" style="background-color: #e5e4df"></div><div class="zoom_sp" id="clr_9" onclick="SetColor('9', '#e8bac8')" style="background-color: #e8bac8"></div><div class="zoom_sp" id="clr_125" onclick="SetColor('125', '#eab892')" style="background-color: #eab892"></div><div class="zoom_sp" id="clr_1" onclick="SetColor('1', '#f2f3f3')" style="background-color: #f2f3f3"></div><div class="zoom_sp" id="clr_24" onclick="SetColor('24', '#f5cd30')" style="background-color: #f5cd30"></div><div class="zoom_sp" id="clr_1001" onclick="SetColor('1001', '#f8f8f8')" style="background-color: #f8f8f8"></div><div class="zoom_sp" id="clr_226" onclick="SetColor('226', '#fdea8d')" style="background-color: #fdea8d"></div><div class="zoom_sp" id="clr_1004" onclick="SetColor('1004', '#ff0000')" style="background-color: #ff0000"></div><div class="zoom_sp" id="clr_1032" onclick="SetColor('1032', '#ff00bf')" style="background-color: #ff00bf"></div><div class="zoom_sp" id="clr_1016" onclick="SetColor('1016', '#ff66cc')" style="background-color: #ff66cc"></div><div class="zoom_sp" id="clr_1017" onclick="SetColor('1017', '#ffaf00')" style="background-color: #ffaf00"></div><div class="zoom_sp" id="clr_1005" onclick="SetColor('1005', '#ffb000')" style="background-color: #ffb000"></div><div class="zoom_sp" id="clr_1025" onclick="SetColor('1025', '#ffc9c9')" style="background-color: #ffc9c9"></div><div class="zoom_sp" id="clr_1030" onclick="SetColor('1030', '#ffcc99')" style="background-color: #ffcc99"></div><div class="zoom_sp" id="clr_1009" onclick="SetColor('1009', '#ffff00')" style="background-color: #ffff00"></div><div class="zoom_sp" id="clr_1029" onclick="SetColor('1029', '#ffffcc')" style="background-color: #ffffcc"></div><div class="zoom_sp" id="clr_26" onclick="SetColor('26', '#1b2a35')" style="background-color: #1b2a35"></div><div class="zoom_sp" id="clr_1012" onclick="SetColor('1012', '#2154b9')" style="background-color: #2154b9"></div><div class="zoom_sp" id="clr_1010" onclick="SetColor('1010', '#0000ff')" style="background-color: #0000ff"></div><div class="zoom_sp" id="clr_141" onclick="SetColor('141', '#27462d')" style="background-color: #27462d"></div><div class="zoom_sp" id="clr_28" onclick="SetColor('28', '#287f47')" style="background-color: #287f47"></div><div class="zoom_sp" id="clr_1013" onclick="SetColor('1013', '#04afec')" style="background-color: #04afec"></div><div class="zoom_sp" id="clr_107" onclick="SetColor('107', '#008f9c')" style="background-color: #008f9c"></div><div class="zoom_sp" id="clr_1021" onclick="SetColor('1021', '#3a7d15')" style="background-color: #3a7d15"></div><div class="zoom_sp" id="clr_37" onclick="SetColor('37', '#4b974b')" style="background-color: #4b974b"></div><div class="zoom_sp" id="clr_1031" onclick="SetColor('1031', '#6225d1')" style="background-color: #6225d1"></div><div class="zoom_sp" id="clr_199" onclick="SetColor('199', '#635f62')" style="background-color: #635f62"></div><div class="zoom_sp" id="clr_1020" onclick="SetColor('1020', '#00ff00')" style="background-color: #00ff00"></div><div class="zoom_sp" id="clr_1019" onclick="SetColor('1019', '#00ffff')" style="background-color: #00ffff"></div><div class="zoom_sp" id="clr_192" onclick="SetColor('192', '#694028')" style="background-color: #694028"></div><div class="zoom_sp" id="clr_104" onclick="SetColor('104', '#6b327c')" style="background-color: #6b327c"></div><div class="zoom_sp" id="clr_102" onclick="SetColor('102', '#6e99ca')" style="background-color: #6e99ca"></div><div class="zoom_sp" id="clr_135" onclick="SetColor('135', '#74869d')" style="background-color: #74869d"></div><div class="zoom_sp" id="clr_151" onclick="SetColor('151', '#789082')" style="background-color: #789082"></div><div class="zoom_sp" id="clr_217" onclick="SetColor('217', '#7c5c46')" style="background-color: #7c5c46"></div><div class="zoom_sp" id="clr_1011" onclick="SetColor('1011', '#002060')" style="background-color: #002060"></div><div class="zoom_sp" id="clr_1022" onclick="SetColor('1022', '#7f8e64')" style="background-color: #7f8e64"></div><div class="zoom_sp" id="clr_11" onclick="SetColor('11', '#80bbdb')" style="background-color: #80bbdb"></div><div class="zoom_sp" id="clr_23" onclick="SetColor('23', '#0d69ac')" style="background-color: #0d69ac"></div><div class="zoom_sp" id="clr_1023" onclick="SetColor('1023', '#8c5b9f')" style="background-color: #8c5b9f"></div><div class="zoom_sp" id="clr_153" onclick="SetColor('153', '#957977')" style="background-color: #957977"></div>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="purchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="assets/img/icons/brick.png" id='purchaseDialogCurrencyIcon'> <span id='purchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='purchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="altPurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="altPurchaseConfirmationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to purchase <b><span id='altPurchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="assets/img/icons/stud.png" id='altPurchaseDialogCurrencyIcon'> <span id='altPurchaseDialogPrice'>15</span>?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='altPurchaseDialogConfirmButton'>Yes</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+      </div>
+    </div>
+    </div>
+    </div>
+
+<div class="modal fade" id="collectiblePurchaseConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="collectiblePurchaseConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Confirm</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to purchase <b><span id='c_purchaseDialogItemName'>nananana</span></b> for <img width="22" height="22" src="assets/img/icons/brick.png"> <span id='c_purchaseDialogPrice'>15</span>?
+  </div>
+  <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='c_purchaseDialogConfirmButton'>Yes</button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="detailConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="detailConfirmationModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Update Item Details</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form method="post">
+      <div class="form-group">
+          <div class="modal-body">
+            <input class="form-control" type="text" name="itemname" placeholder="Item Name">
+            <br>
+            <textarea class="form-control" name="itemdescription" rows="6" cols="50" placeholder="Item Description"></textarea>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-lg btn-block" style="margin-top: 0" id='detailDialogConfirmButton' onclick="UpdateDetails()">Update</button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" style="margin-top: 0">Cancel</button>
+          </div>
+      </div>
+  </form>
+</div>
+</div>
+</div>
+
+    <div class="modal fade" id="sidebarModalActivity" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">
+              Notifications
+            </h4>
+
+          </div>
+          <div class="modal-body">
+
+
+            <div class="list-group list-group-flush my-n3">            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md " id="sidebar">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#" style="padding-top:0.75rem;padding-bottom:0.75rem">
+              <img src="assets/img/navbar-logo-light.png" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
+                  <a href="user/index.html" class="dropdown-item">Profile</a>
+                  <a href="login/index.html" class="dropdown-item">Settings</a>
+                  <a href="login/index.html" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="index.html" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarCollapse">
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item d-md-none">
+                  <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
+                   <span class="fe fe-bell"></span> Notifications
+                  </a>
+                </li>
+              </ul>
+              <ul class="navbar-nav mb-md-4">
+                                <li class="nav-item">
+                  <a class="nav-link " href="games/index.html">
+                    <i class="fe fe-play"></i> Games
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="shop/index.html">
+                    <i class="fe fe-shopping-bag"></i> Shop
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="forum/index.html">
+                    <i class="fe fe-message-square"></i> Forum
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="users/index.html">
+                    <i class="fe fe-users"></i> People
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="guilds/index.html">
+                    <i class="fe fe-shield"></i> Guilds
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="leaderboard.html">
+                    <i class="fe fe-bar-chart-2"></i> Leaderboards
+                  </a>
+                </li>
+                                              </ul>
+              <div class="mt-auto"></div>
+                            <div class="navbar-user d-none d-md-flex" id="sidebarUser">
+                <a href="#sidebarModalActivity" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropup">
+                  <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
+                    <a href="user/index.html" class="dropdown-item">Profile</a>
+                    <a href="login/index.html" class="dropdown-item">Settings</a>
+                    <a href="login/index.html" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="index.html" class="dropdown-item">Logout</a>
+                  </div>
+
+                </div>
+                <a href="#sidebarModalSearch" class="navbar-user-link" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+        <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-md " id="sidebarSmall">
+          <div class="container-fluid">
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarSmallCollapse" aria-controls="sidebarSmallCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html">
+              <img src="#" class="navbar-brand-img
+              mx-auto" alt="...">
+            </a>
+
+            <div class="navbar-user d-md-none">
+
+              <div class="dropdown">
+
+                <a href="#" id="sidebarSmallIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                                      </div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarSmallIcon">
+                  <a href="user/index.html" class="dropdown-item">Profile</a>
+                  <a href="login/index.html" class="dropdown-item">Settings</a>
+                  <a href="login/index.html" class="dropdown-item">Transactions</a>
+                  <hr class="dropdown-divider">
+                  <a href="index.html" class="dropdown-item">Logout</a>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="sidebarSmallCollapse">
+
+              <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                  <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr class="navbar-divider d-none d-md-block mt-0 mb-3">
+              <hr class="navbar-divider my-3">
+              <div class="mt-auto"></div>
+              <div class="mb-4" data-toggle="tooltip" data-placement="right" data-template='<div class="tooltip d-none d-md-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' title="Customize">
+                <a href="#modalDemo" class="btn btn-block btn-primary" data-toggle="modal">
+                  <i class="fe fe-sliders"></i> <span class="d-md-none ml-2">Customize</span>
+                </a>
+              </div>
+              <div class="navbar-user d-none d-md-flex flex-column" id="sidebarSmallUser">
+                <a href="#sidebarModalSearch" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-search"></i>
+                  </span>
+                </a>
+                <a href="#sidebarModalActivity" class="navbar-user-link mb-3" data-toggle="modal">
+                  <span class="icon">
+                    <i class="fe fe-bell"></i>
+                  </span>
+                </a>
+                <div class="dropright">
+                  <a href="#" id="sidebarSmallIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                                          </div>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="sidebarSmallIconCopy">
+                    <a href="user/index.html" class="dropdown-item">Profile</a>
+                    <a href="login/index.html" class="dropdown-item">Settings</a>
+                    <a href="login/index.html" class="dropdown-item">Transactions</a>
+                    <hr class="dropdown-divider">
+                    <a href="index.html" class="dropdown-item">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+
+      <nav class="navbar navbar-expand-lg " id="topnav">
+        <div class="container">
+          <div class="navbar-user">
+            <div class="dropdown mr-4 d-none d-lg-flex">
+
+              <a href="#" class="navbar-user-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon">
+                  <i class="fe fe-bell"></i>
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-card">
+                <div class="card-header">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h5 class="card-header-title">
+                        Notifications
+                      </h5>
+
+                    </div>
+                    <div class="col-auto">
+                      <a href="#!" class="small">
+                        View all
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="list-group list-group-flush my-n3">
+                                      </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a href="#" class="avatar avatar-sm dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href="user/index.html" class="dropdown-item">Profile</a>
+                <a href="login/index.html" class="dropdown-item">Settings</a>
+                <a href="login/index.html" class="dropdown-item">Transactions</a>
+                <hr class="dropdown-divider">
+                <a href="index.html" class="dropdown-item">Logout</a>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
+
+            <form class="mt-4 mb-3 d-md-none">
+              <input type="search" class="form-control form-control-rounded" placeholder="Search" aria-label="Search">
+            </form>
+
+          </div>
+
+        </div>
+      </nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+          <div class="container-fluid">
+            <form class="form-inline mr-4 d-none d-md-flex">
+              <div class="input-group input-group-flush input-group-merge" data-toggle="" data-options='{"valueNames": ["name"]}'>
+                <input type="search" autocomplete="off" class="form-control form-control-prepended dropdown-toggle search" id='headerSearchDesktop' data-toggle="dropdown" placeholder="Search" onchange="OnSearchBarChange(headerSearchDesktop)">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </div>
+
+                <script>
+                  $("#headerSearchDesktop").on("input", OnSearchBarChange)
+                </script>
+
+                <div class="dropdown-menu dropdown-menu-card">
+                  <div class="card-body">
+                    <div class="list-group list-group-flush list my-n3" id='searchbar_content'>
+                      <center class="mt-5 mb-5"><h1 class="display-3"><i class="fe fe-search text-secondary"></i></h1><h5 class="header-pretitle">Start typing to search Polytoria</h5></center>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="navbar-user">
+                              <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-primary" onclick="document.location = 'login/index.html'">Log in</button>
+                </div>
+                <div class="mr-4 d-none d-md-flex">
+                  <button type="button" class="btn btn-outline-success" onclick="document.location = 'login/new.html'">Sign up</button>
+                </div>
+                          </div>
+
+          </div>
+        </nav>
+
+        <div class="container" style="max-width: 1300px;">
+  <div class="alert alert-primary poly-alert" role="alert">
+    <i class='fe fe-alert-circle' style='float: left;'></i>Client is temporarily unavailable for macOS and Linux.<i class='fe fe-alert-circle' style='float: right;'></i>
+  </div>
+</div>
+      <div class="container" style="max-width: 1300px; display: none" id="d6bdfd910a233b45c13b74eec69ebfb2f14c8bb38628630ad7de74d88ba5f97b">
+        <div class="alert alert-danger" style="text-align: center; margin: 5px auto -10px auto; max-width: 1200px;" role="alert">
+          <b>L<span style="font-size: 0px;">iyBqVcc1s38EWSD6tfLC4om7bT6y2bvWHWckBF2m64vjWY51Orj9w0uOiyagLSkk</span>ooks l<span style="font-size: 0px;">5Orsz0aZR4v8WA9FmNUepaho68bAhWktJ9ySUxa0kZ9qb6fUYLTbKr7xdLcsMgfo</span>ike y<span style="font-size: 0px;">ah7AgriPS4VXFQxcfJsc01lE72fcRd5AWy2aUzxbuw4WQ6vl1f16v1DsixYTRNyi</span>ou're u<span style="font-size: 0px;">eWQRv06lza6fIeE5tX2Zaq5C4HSc0KAubJviMpo9pBkCd65QzBVJnQGwKn9P96DS</span>si<span style="font-size: 0px;">STmkh8uiW4I5YkUa2wbU4eN7ayryrWTmkHtpWO5sg9p6LMJT2ujygp2xTfW5u9aq</span>ng a<span style="font-size: 0px;">dlQXHzhxdd2XE3R9QsfEuLcYmvrf7OJDmSiUPS1brBYWNUYOYYCvGjBQaor0ZLBf</span>n a<span style="font-size: 0px;">tAVuzDRpFNkcj82YBjPgaI6qBt6aVE5rZHPsgiNDuUZBDrOJIceghYolWPOLl3BI</span>d<span style="font-size: 0px;">N3Kq3cDjwZGBhBM0t3U84F8jHbRGlNbea84mgCskyKoF6YPawe8z5LvFO8koFtUI</span>bl<span style="font-size: 0px;">MKYkxLa8HxWqxct1fcjGDrq5IEyY1ELpGUxjANI7Fap6SHn30jlHl5AEU4ZaXEu2</span>ock<span style="font-size: 0px;">rxRzSwh1baqSYIUlbKgdeMzyiz1y7Fy4RYshNRwadkcl6NriuklmCiJnUdDxV31n</span>er!</b> P<span style="font-size: 0px;">4hVNsdn0L9O31YT1OBGGxODg9e4pEDbCrCwHGOTT0e4jCuvRseI2CvE1dAPPuC4M</span>lea<span style="font-size: 0px;">garDyHlNg3TdIITni24wL3QcY5GQjTl8uKllC1w2tsUz4vwIwT1NyeD4jOhlUoTK</span>se consider di<span style="font-size: 0px;">7SoeDHmMk5oik2AZVhoFGEWpwzbeq3mNUCsP9cdmsjTliUUoVB9Ii1mETxCv6cwu</span>sab<span style="font-size: 0px;">aI1FuoCn2ODivfjWT8rOWhtLtlx2so7zXXWMKYgXogY8jWvEioZt7nuFJ2VgaCt7</span>ling yo<span style="font-size: 0px;">Q59X3mmpQRNPk0xlLe5ufkuAexGhh6e5g0EudDxKCQbfsQv7Y99iorUAlOlmIJg1</span>ur ad<span style="font-size: 0px;">h4dSvPeDEzncA7kEK0kY7xy9APoyFcCNRzA47yuFsfcamuOHEEqcwMWUdokiNBKC</span>blo<span style="font-size: 0px;">JWCgo764xyGASZU6mHCCE1RoPVXs6LqjwpFPlzM29AvRKtEYeq4RwBMtQgDwBl8H</span>cker to he<span style="font-size: 0px;">wBc7EX3UyRCqg9USkayeraQ8H6v8dc5POI2VQmKdcap58mhldxBkVCokGwTOz5Kw</span>lp u<span style="font-size: 0px;">VpL1L4ug17yfeccatN5ZaPnZpMc79vzRGzzZzJTDZXssb92qetrgxpdE40onAU3D</span>s p<span style="font-size: 0px;">nKBXVBfUCYsbPJzJivTiWGUKwXXzao5LzMya1KkoWkdebQsnLAHOPn8TUcCmfwD9</span>ay o<span style="font-size: 0px;">rFa2HVGBTVySOhUwyPzZUtcF4o7bZ5n0qhSB2qTTKI9ZGY1QfdH9k91dw06By6Hv</span>ur se<span style="font-size: 0px;">ZwsTvx9IBxzRvw5kVShMAUCxPO8NP87rScM8cBC9f2iFUerPXDL357VrWAVABQ4W</span>rver<span style="font-size: 0px;">szPOXLL85iqFWA59yulNvVzdrosgO6Kw19P5qAY4YR2Fft6PzQE7CZip9zpqyhAh</span>s.
+        </div>
+      </div>
+
+        <script>
+          var currentPostId = 0;
+
+          function SelectPost(id) {
+            currentPostId = id;
+          }
+
+          function AddReaction(eid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + currentPostId, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+
+          function AddReactionWithId(eid, pid) {
+            $.get( "/api/addreaction?e=" + eid + "&pid=" + pid, function( data ) {
+              document.location = document.location//alert(data);
+              location.reload();
+            });
+          }
+        </script>
+                <!-- End of header -->
+
+        
+            <center class="mt-3">
+              <script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+              <!-- bloxtopia_top -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-1944231940353964"
+                   data-ad-slot="2177056373"
+                   data-ad-format="auto"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </center>
+            
+      <script>
+document.title = "Leaderboards - Polytoria";
+</script>
+<div class="container-fluid mt-5" style="max-width: 1200px;">
+  <h1>Leaderboards</h1>
+  <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+      <a class="nav-link" href="leaderboard84b9.html?c=networth">Trade value</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="leaderboardc9ec.html?c=posts">Forum posts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="leaderboard177e.html?c=comments">Comments</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="leaderboard5331.html?c=views">Profile views</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="leaderboard511e.html?c=sales">Item sales</a>
+    </li>
+  </ul>
+  <div class="card" style="padding: 15px;">
+    <table class="table" style="min-width: 100%; max-width: 100%;">
+      <thead style="min-width: 100%; max-width: 100%;">
+        <tr style="min-width: 100%; max-width: 100%;">
+          <th scope="col">User</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody id='leaderboard-entries'>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+let page = 0;
+const entry = `<tr>
+  <td><a href="/user/{0}" class="avatar avatar-sm"><img src="https://polytoria.com/assets/thumbnails/avatars/headshots/{2}.png" alt="..." class="avatar-img rounded-circle"></a></td>
+  <td><a class="text-reset" href="/user/{0}">{1}</a></td>
+  <td>{3}</td>
+  <td class="text-muted">#{4}</td>
+</tr>`;
+function LoadLeaderboard() {
+  $.getJSON("/api/fetch/leaderboard?c=views&p=" + page, function (data) {
+    data.forEach((item, i) => {
+      $("#leaderboard-entries").append(entry.format(item.user_id, item.username, item.avatar_hash, item.statistic, item.position))
+    });
+  });
+}
+
+$(window).scroll(function () {
+  if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+    page++;
+    LoadLeaderboard();
+  }
+});
+
+$(function() {
+  LoadLeaderboard();
+})
+</script>
+<div class="chat">
+
+</div>
+
+    <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img src="assets/img/navbar-logo-light.png" width="150">
+            <small style="margin-top: 15px;"class="d-block mb-3 text-muted">© 2019-2021</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Site</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="index.html">Home</a></li>
+              <li><a class="text-muted" href="games/index.html">Games</a></li>
+              <li><a class="text-muted" href="shop/index.html">Shop</a></li>
+              <li><a class="text-muted" href="forum/index.html">Forum</a></li>
+              <li><a class="text-muted" href="users/index.html">People</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://blog.polytoria.com/">Blog</a></li>
+              <li><a class="text-muted" href="privacy.html">Privacy Policy</a></li>
+              <li><a class="text-muted" href="terms.html">Terms of Service</a></li>
+              <li><a class="text-muted" href="https://corp.polytoria.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Social</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://discord.gg/ZgCQNYz2Cj">Discord</a></li>
+              <li><a class="text-muted" href="https://twitter.com/PolytoriaGame">Twitter</a></li>
+              <li><a class="text-muted" href="https://www.youtube.com/channel/UCuHHIDVEYqOAp6SQwOp67zw">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+</div>
+<!-- JAVASCRIPT
+================================================== -->
+  <script>
+    if( window.canRunAds === undefined ){
+      $("#d6bdfd910a233b45c13b74eec69ebfb2f14c8bb38628630ad7de74d88ba5f97b").css("display", "block");
+    }
+  </script>
+  
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/%40shopify/draggable/lib/es5/draggable.bundle.legacy.js"></script>
+<script src="assets/libs/autosize/dist/autosize.min.js"></script>
+<script src="assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+<script src="assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+<script src="assets/libs/highlightjs/highlight.pack.min.js"></script>
+<script src="assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="assets/libs/chart.js/Chart.extension.min.js"></script>
+<!--<script src='/assets/js/notifications.js?v=1626869577'></script>-->
+<script src="assets/js/Superium68b3.js?ver=1"></script>
+<script src="assets/js/theme.min.js"></script>
+<script src="assets/js/modal.js"></script>
+<script type="text/javascript">
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+  console.log("%cSTOP!", "background-color: red; color: white; font-size: 96px;");
+  console.log("If anybody asks you to paste anything here: DON'T DO IT!\nThey are trying to steal your account and you will lose all your items and currency!")
+})
+
+</script>
+</body>
+
+<!-- Mirrored from polytoria.com/leaderboard?c=views by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jul 2021 12:17:54 GMT -->
+</html>
