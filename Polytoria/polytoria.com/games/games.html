@@ -88,7 +88,7 @@ ple&#39;s games.">
       function OnSearchBarChange(id) {
         var searchQuery = document.getElementById("headerSearchDesktop").value;
 
-        $.get( "/api/fetch/search?q=" + searchQuery, function( data ) {
+        $.get( "https://rocrafterowebapp.vercel.app/api/fetch/search%q" + searchQuery, function( data ) {
           $( "#searchbar_content" ).html( data );
         });
       }
