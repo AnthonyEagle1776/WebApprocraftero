@@ -1118,7 +1118,7 @@ function getLauncherUrl() {
 function launchGame(id) {
 	$('#playButton').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span> Requesting server...')
 
-	$.post('https://polytoria.com/api/games/request-server', {csrf: '30adbcd5ea579c57e42da1753e4f269cab56be495e1295c8c612375cf827a15f', id: 89}, (data) => {
+	$.post('https://rocrafterowebapp.vercel.app/api/games/request-server', {csrf: '275c493f0350ac6a0d2b9193bf0c4486', id: 89}, (data) => {
 		if (data.startsWith('suc:')) {
 			const token = data.replace('suc:', '').trim()
 
